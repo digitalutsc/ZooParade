@@ -26,7 +26,9 @@ var typeIndex = 1;
 var questionIndex = 2;
 var choicesIndex = 3;
 var correctIndex = 4;
-var infoIndex = 5;
+var rightResponseIndex = 5;				// Feature #6029:  Added right/wrongResponseIndex for importing dial response text from csv files.
+var wrongResponseIndex = 6;
+var infoIndex = 7;
 
 var startQuestion = 1;
 var onTrailQuestion = 2;

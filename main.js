@@ -192,91 +192,137 @@ function AnimalTransported(player, animal){
 /* Called when the player's answer is correct 
  * Moves the player to ahead and displays the appropriate info
  */
-function CorrectAnswerMove(){
-	if (totalAnimationTime == 0){
+ // Feature #6029:  Changed function to pass dial response text based on dial is physical game.
+ // Added variable "responseText" that will contain the text read in from the csv files.
+ // It defaults to blank; a blank value will cause the function to acts as it originally did and
+ // just use the response "Correct Answer!".
+function CorrectAnswerMove(responseText = "")
+{
+	if (totalAnimationTime == 0)
+	{
 		var player = game.player0;
 		if (game.right) player = game.player1;
 
-		var message = "Correct Answer!<br/>Check out more info in the answer section<br/>Click on 'Proceed' to continue";
-		if (player.move1 || player.move2 || player.move3){
-			if (player.move1){
+		// Feature #6029:  Main changes made to change output message displayed in message box.  
+		var message = responseText;
+		if (message == "")
+			message = "Correct Answer!";
+		
+		message += "<br/>Check out more info in the answer section<br/>Click on 'Proceed' to continue";
+
+		if (player.move1 || player.move2 || player.move3)
+		{
+			if (player.move1)
+			{
 				MovePlayer(player, player.checkpoints[0]);
 				player.move1 = false;
-			} else if (player.move2){
+			} 
+			else if (player.move2)
+			{
 				MovePlayer(player, player.checkpoints[1]);
 				player.move2 = false;
-			} else if (player.move3){
+			}
+			else if (player.move3)
+			{
 				MovePlayer(player, player.checkpoints[2]);
 				player.move3 = false;
 			}
-			setTimeout(function(){
-				totalAnimationTime = 0;
-				AddInfoText();
-				AddMessage(message);
-			}, totalAnimationTime);
-		
-		} else if (player.captured){
+			
+			setTimeout(function()
+								{
+									totalAnimationTime = 0;
+									AddInfoText();
+									AddMessage(message);
+								}, 
+								totalAnimationTime);
+		}
+		else if (player.captured)
 			AnimalTransported(player, player.currentAnimal);
-
-		} else {
-			if (player.currentCheckpoint.capture && player.currentCheckpoint.animal == player.currentAnimal){
+		else 
+		{
+			if (player.currentCheckpoint.capture && player.currentCheckpoint.animal == player.currentAnimal)
+			{
 				AnimalCaptured(player, player.currentAnimal);
-			} else {
+			} 
+			else
+			{
 				var paths = GetPossiblePaths(player, player.steps);
 				player.possiblePaths = paths;
-				if (paths.length == 1){
+				if (paths.length == 1)
+				{
 					var path = paths[0];
 					MovePlayer(player, path[path.length - 1]);
-					setTimeout(function(){
-						totalAnimationTime = 0;
-						AddInfoText();
-						AddMessage(message);
-					}, totalAnimationTime);
-				} else {
-					for (var i = 0; i < player.possiblePaths.length; i++){
+					setTimeout(function()
+										{
+											totalAnimationTime = 0;
+											AddInfoText();
+											AddMessage(message);
+										},
+										totalAnimationTime);
+				} 
+				else 
+				{
+					for (var i = 0; i < player.possiblePaths.length; i++)
+					{
 						SelectCheckpoint (player.possiblePaths[i][player.possiblePaths[i].length - 1]);
 					}
+
 					AddMessage("Click on one of the highlighted checkpoints to move player");
 				}
 			}	
 		}
 	}
-		
 }
 
 /* Called when the player's answer is wrong 
  * Moves the player to backwards and displays the appropriate info
  */
-function WrongAnswerMove(){
+ // Feature #6029:  Changed function to pass dial response text based on dial is physical game.
+ // Added variable "responseText" that will contain the text read in from the csv files.
+ // It defaults to blank; a blank value will cause the function to acts as it originally did and
+ // just use the response "Wrong Answer!".
+function WrongAnswerMove(responseText = "")
+{
 	if (totalAnimationTime == 0){
 		var player = game.player0;
 		if (game.right) player = game.player1;
 
-		var message = "Wrong Answer!<br/>Check out more info in the answer section<br/>Click on 'Proceed' to continue";
-		if (!player.move1 && !player.move2 && !player.move3 && !player.captured){
+		var message = responseText;
+		if (message == "")
+			message = "Wrong Answer!";
+
+		message += "<br/>Check out more info in the answer section<br/>Click on 'Proceed' to continue";
+
+		if (!player.move1 && !player.move2 && !player.move3 && !player.captured)
+		{
 			player.steps = -1;
 			MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 1]);
 		}
-
-		setTimeout(function(){
-			totalAnimationTime = 0;
-			AddMessage(message);
-			AddInfoText();
-		}, totalAnimationTime);
+		// CAPTURE ISSUE --> wrong capture should be back 2!
+		setTimeout(function()
+							{
+								totalAnimationTime = 0;
+								AddMessage(message);
+								AddInfoText();
+							},
+							totalAnimationTime);
 	}
 }
 
 /* Updates the global variable qAPair */
-function UpdateQuestion(){
-
+function UpdateQuestion()
+{
 	var player = game.player0;
 	if (game.right) player = game.player1;
 
-	if (player.animalSelected){
-		if (player.spin){
+	if (player.animalSelected)
+	{
+		if (player.spin)
+		{
 			qAPair = new Question("", "", "");
-		} else {
-
+		} 
+		else 
+		{
 			var questionType = startQuestion;
 			if (player.visitedCheckpoints.length > 2) questionType = onTrailQuestion;
 			if (player.currentCheckpoint != null && player.currentCheckpoint.capture && 
@@ -302,11 +348,13 @@ function AddMessage(message){
 }
 
 /* Adds the question in the question section of the game */
-function AddQuestionText(){
+function AddQuestionText()
+{
 	if (qAPair != null){
 		
 		var question = qAPair.question;
 		//if (question == "") alert(question);
+		// process footprints HERE!
 
 		document.getElementById('questionHeader').style.fontSize = GetMapWidth() * headerFontScale;
 
@@ -330,7 +378,10 @@ function AddAnswerText(){
 		var div = document.getElementById('answerContent');
 		div.style.fontSize = GetMapWidth() * textFontScale;
 		div.innerHTML = answer;
-		if ((answer == correctYesHTML || answer == correctNoHTML)) SetYesNoButtonStyle();
+		// Feature #6029:  Need to change this as the variables "correctYesHTML", and "correctNoHTML" are no longer used.
+		// Removed:
+		//if ((answer == correctYesHTML || answer == correctNoHTML)) SetYesNoButtonStyle();
+		if (/yesButton/.test(answer)) SetYesNoButtonStyle();
 		game.currentAnswer = answer;
 	}		
 }

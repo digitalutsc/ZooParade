@@ -52,29 +52,37 @@ function ProcessCSV(results, right)
 	for (var i = 1; i < rows.length; i++)
 	{
 		var row = rows[i].split(',');
-		if (row[binaryIndex] != "" && row[typeIndex] != "" && row[questionIndex] != "" && (row[choicesIndex] != "" || row[correctIndex] != ""))
+
+		// Feature #6029:  Changed processing to include response text as displayed on the number dial in the physical game.
+		if (row[binaryIndex] != "" && row[typeIndex] != "" && row[questionIndex] != "" && (row[choicesIndex] != "" || row[correctIndex] != "") && (row[rightResponseIndex] != "" || row[wrongResponseIndex] != ""))
 		{
 			var question = row[questionIndex];
 			var answer = "<br/>";
 
 			if (row[binaryIndex].trim() == "TRUE")
 			{
-				if (row[correctIndex].trim() == "TRUE") 
-					answer = correctYesHTML;
-				else 
-					answer = correctNoHTML;
+				if (row[correctIndex].trim() == "TRUE")
+					// Removed for Feature #6029:
+					// answer = correctYesHTML;
+					answer = '<center> <div id="yesButton" onclick="CorrectAnswerMove(\'' + row[rightResponseIndex] + '\')">Yes</div><div id="noButton" onclick="WrongAnswerMove(\'' + row[wrongResponseIndex] + '\')">No</div> </center>';
+				else
+					// Removed for Feature #6029:
+					// answer = correctNoHTML;
+					answer = '<center> <div id="yesButton" onclick="WrongAnswerMove(\'' + row[wrongResponseIndex] + '\')">Yes</div><div id="noButton" onclick="CorrectAnswerMove(\'' + row[rightResponseIndex] + '\')">No</div> </center>';
+					
 			} 
 			else
 			{
 				var choices = row[choicesIndex].split("/");
+				var responses = row[rightResponseIndex].split("/");						// Feature #6029:  Added responses also parsed by '/' on the csv
 				var correctAnswer = row[correctIndex].trim();
 				
 				for (var j = 0; j < choices.length; j++)
 				{
 					var label = choices[j].trim();
-					var action = "WrongAnswerMove()";
+					var action = "WrongAnswerMove('" + responses[j].trim() + "')";		// Feature #6029:  Add responses to action.
 					if (label == correctAnswer)
-						action = "CorrectAnswerMove()";
+						action = "CorrectAnswerMove('" + responses[j].trim() + "')";
 					
 					answer += '<div class="mcqOption" cursor="pointer" onClick="' + action + '"><center>' + label + '</center></div><br/>';
 				}
@@ -89,6 +97,7 @@ function ProcessCSV(results, right)
 				playerQuestionSet.start.push(questionObject);
 			else if (row[typeIndex] == onTrailQuestion) 
 				playerQuestionSet.onTrail.push(questionObject);
+				// add logic for footprint question
 			else if (row[typeIndex] == captureQuestion) 
 				playerQuestionSet.capture.push(questionObject);
 			else if (row[typeIndex] == transportQuestion) 
@@ -103,8 +112,8 @@ function ProcessCSV(results, right)
  * Parameter types: (String, boolean)
  * Return type: (array of object)
  */
-function GetNextQuestion(questionType, right){
-
+function GetNextQuestion(questionType, right)
+{
 	var playerQuestionSet = player0QuestionSet;
 	if (right) playerQuestionSet = player1QuestionSet;
 
@@ -117,7 +126,8 @@ function GetNextQuestion(questionType, right){
  * Reads the contents of the file and converts it to a string.
  * Parameter type: (string)
  */
-function ReadFile(path){
+function ReadFile(path)
+{
 	var txtFile = new XMLHttpRequest();
 	txtFile.open("GET", path, false);
 	txtFile.send(null);

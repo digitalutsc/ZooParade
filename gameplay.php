@@ -41,7 +41,7 @@ Zoo Parade Game
 	<div id="center">
 		<div id="zoo">
 			<div id="zooHeader"><center>Zoo</center></div>
-			<svg id="zoo0"></svg>
+			<svg id="zoo0"></svg><!-- add zoo empty??? -->
 			<svg id="zoo1"></svg>
 		</div>
 		<div id="messageBox"><div id="messageBoxContent"></div></div>

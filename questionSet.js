@@ -53,6 +53,7 @@ function GetQuestion(questionSet, questionType)
 	var question = questions[index];
 	questionsUsed.push(question);
 	Remove(questions, question);
+	// footprint picture processing?
 
 	return question;
 }
