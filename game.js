@@ -16,8 +16,12 @@ function Game(){
 	this.rightMap = SVG('rightMap');
 	this.rightPath = this.rightMap.nested();
 	this.rightCheckpoints = new Array();
+	
+	// SVG object for the Spinner section
+	this.spinner = SVG('spinner');
 
-	this.spinner = SVG('spinner');	// SVG object for the Spinner section
+	// Feature #6029:  SVG object in order to render footprint images
+	this.footprints = SVG('footprints');
 
 	// SVG objects for the zoo sections
 	this.zoo0 = SVG('zoo0');

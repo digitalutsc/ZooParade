@@ -7,7 +7,8 @@
 /* Initializer for Animal Object 
  * Parameter types : (string, string, string)
  */
-function Animal(name, continent, shortName){
+function Animal(name, continent, shortName)
+{
 	this.name = name;
 	this.continent = continent;
 	this.svg = {};
@@ -20,6 +21,9 @@ function Animal(name, continent, shortName){
 	this.leftImgPath = 'Resources/AnimalImages/LeftImages/' + shortName + 'Left.svg';
 	this.rightImgPath = 'Resources/AnimalImages/RightImages/' + shortName + 'Right.svg';
 	this.cageImgPath = 'Resources/AnimalImages/Cage/SVG/' + shortName + 'Cage.svg';
+	// Feature #6029:  Render footprint images; adding image path information
+	this.footprintYesImgPath = 'Resources/SVG/FootPrints/' + shortName + '_yes.svg';
+	this.footprintNoImgPath = 'Resources/SVG/FootPrints/' + shortName + '_no.svg';
 }
 
 
@@ -108,7 +112,6 @@ function AddAnimalImages(game, animals, right){
 
 	var x = imgWidth / 2;
 	if (right) x = GetMapWidth() - x;
-
 	var y = GetMapHeight() * mapScale * 3;
 
 	AddAnimalImage(game, animals[0], path, imgWidth, imgHeight, x, y, right);
@@ -212,25 +215,3 @@ function PutAnimalsInZoo(animals, right){
 		PutAnimalInZoo(animals[i], right, i);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

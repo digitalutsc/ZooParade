@@ -74,9 +74,7 @@ function AnimalSelected(player, animal){
 	var message = nextPlayer.name + "'s turn";
 	if (nextPlayer.currentAnimal == null) message = nextPlayer.name + ", please choose an animal to capture by clicking on the animal image";
 
-	//alert("before");
 	UpdatePlayerAnimal(player, animal.csvPath);
-	//alert('after');
 
 	player.animalSelected = true;
 	player.visitedCheckpoints = new Array();
@@ -350,16 +348,42 @@ function AddMessage(message){
 /* Adds the question in the question section of the game */
 function AddQuestionText()
 {
-	if (qAPair != null){
-		
+	if (qAPair != null)
+	{	
 		var question = qAPair.question;
-		//if (question == "") alert(question);
-		// process footprints HERE!
-
 		document.getElementById('questionHeader').style.fontSize = GetMapWidth() * headerFontScale;
-
 		var div = document.getElementById('questionContent');
 		div.style.fontSize = GetMapWidth() * textFontScale;
+
+		// Feature #6029:  Render footprint
+		game.footprints.clear();
+
+		if(/Footprints_/.test(question))
+		{
+			div.style.height = '60%';
+
+			var image;
+			var player = game.player0;
+			if (game.right) player = game.player1;
+
+			var width = GetMapWidth() * 0.90;
+			var height = width/9;
+			
+			if (/Footprints_yes/.test(question))
+			{
+				image = game.footprints.image(player.currentAnimal.footprintYesImgPath, width, height);
+				game.svgObjects.push(image);
+				question = question.replace("Footprints_yes","");
+
+			}
+			else if (/Footprints_no/.test(question))
+			{
+				image = game.footprints.image(player.currentAnimal.footprintNoImgPath,width,height);
+				game.svgObjects.push(image);
+				question = question.replace("Footprints_no","");
+			}
+		}
+
 		div.innerHTML = question;
 		game.currentQuestion = question;
 	}
@@ -374,7 +398,7 @@ function AddAnswerText(){
 		answerHeader.style.fontSize = GetMapWidth() * headerFontScale;
 
 		var answer = qAPair.answer;
-		
+
 		var div = document.getElementById('answerContent');
 		div.style.fontSize = GetMapWidth() * textFontScale;
 		div.innerHTML = answer;
