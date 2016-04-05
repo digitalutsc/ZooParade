@@ -47,7 +47,6 @@ Zoo Parade Game
 		<div id="messageBox"><div id="messageBoxContent"></div></div>
 	</div>
 	<svg id="rightMap"></svg>
-	
 	<div id="question">
 		<center>
 			<font id="questionHeader">Question</font>
@@ -64,12 +63,18 @@ Zoo Parade Game
 			</g>
 		</svg>
 	</div>
-
 	<div id="answer">
 		<center>
 			<font id="answerHeader">Answer</font></center>
 			<div id="answerContent"></div>
 		</center>
+	</div>
+	<!-- Issue #6088 added iframe to show zoo stories -->
+	<div id="storyPopup">
+		<input id="storyClose" type="button" onClick="ShowZooStoryPopup(false,'');" value="X"></input>
+		<iframe id="story">
+			<p>Your browser does not support iframes.</p>
+		</iframe>
 	</div>
 	
 	<script src="qA.js"></script>

@@ -41,8 +41,6 @@ if (continent1Name != "North America"){
 var continent1AnimalNames = continentAnimalNames[continent1Index];
 var continent1AnimalShortNames = continentAnimalShortNames[continent1Index];
 
-
-
 // Start a new Game
 var game = new Game();
 var totalAnimationTime = 0;
@@ -61,7 +59,6 @@ $(window).resize(function(){
 FixBodySize();
 Setup(game);
 AddMessage(game.player0.name + ", please choose an animal to capture by clicking on the animal image");
-
 
 /* This function is called when an animal is selected by the 
  * player to capture
@@ -354,13 +351,13 @@ function AddQuestionText()
 		document.getElementById('questionHeader').style.fontSize = GetMapWidth() * headerFontScale;
 		var div = document.getElementById('questionContent');
 		div.style.fontSize = GetMapWidth() * textFontScale;
-
+		
 		// Feature #6029:  Render footprint
 		game.footprints.clear();
 
 		if(/Footprints_/.test(question))
 		{
-			div.style.height = '60%';
+			div.style.height = '50%';
 
 			var image;
 			var player = game.player0;
@@ -420,7 +417,7 @@ function AddInfoText(){
 		var info = qAPair.info;
 
 		if (info == null || info == "") info = "<br>There is no additional information available.";
-
+		
 		var player = game.player0;
 		if (game.right) player = game.player1;
 
@@ -450,4 +447,17 @@ function Remove(list, element){
 		list.splice(index, 1);
 	}
 	return element;
+}
+
+/* Task #6088:  Set zoo story popup iframe visibility */
+function ShowZooStoryPopup(showStory, storyName)
+{
+	var storyPath = './Resources/zooStories/' + storyName + '.html';
+	if (showStory)
+	{
+		document.getElementById("story").src = storyPath;
+		document.getElementById("storyPopup").style.visibility = "visible";
+	}
+	else
+		document.getElementById("storyPopup").style.visibility = "hidden";
 }

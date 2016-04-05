@@ -54,6 +54,7 @@ function ProcessCSV(results, right)
 		var row = rows[i].split(',');
 
 		// Feature #6029:  Changed processing to include response text as displayed on the number dial in the physical game.
+		// Feature #6088:  Changed processing to include story intro text and the zoo story name
 		if (row[binaryIndex] != "" && row[typeIndex] != "" && row[questionIndex] != "" && (row[choicesIndex] != "" || row[correctIndex] != "") && (row[rightResponseIndex] != "" || row[wrongResponseIndex] != ""))
 		{
 			var question = row[questionIndex];
@@ -89,8 +90,11 @@ function ProcessCSV(results, right)
 			}
 
 			var info = "";
-			if (row.length > infoIndex) 
-					info = row[infoIndex];
+			if ((row.length > infoIndex) && (row[infoIndex] != "" && row[zooStoryIndex] != "" && row[zooStoryLinkTextIndex]))
+			{
+				info = "<br>" + row[infoIndex] + "<br><br><a href=\"#\" onClick=\"ShowZooStoryPopup(true,'" + row[zooStoryIndex] + "'); return false;\">" + row[zooStoryLinkTextIndex] + "</a>";
+			}
+
 			var questionObject = new Question(question, answer, info);
 
 			if (row[typeIndex] == startQuestion) 

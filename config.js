@@ -28,7 +28,9 @@ var choicesIndex = 3;
 var correctIndex = 4;
 var rightResponseIndex = 5;				// Feature #6029:  Added right/wrongResponseIndex for importing dial response text from csv files.
 var wrongResponseIndex = 6;
-var infoIndex = 7;
+var infoIndex = 7;						// Feature #6088:  Had to split zoo story and intro text.
+var zooStoryIndex = 8;
+var zooStoryLinkTextIndex = 9;
 
 var startQuestion = 1;
 var onTrailQuestion = 2;

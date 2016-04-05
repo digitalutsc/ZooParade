@@ -97,6 +97,7 @@ body{
 	margin-bottom: 0.86%;
 	border-radius: 2em;
 	float: left;
+	overflow: hidden;	/* Feature #6029:  prevent footprint svg from causing scroll bars*/
 }
 
 #questionHeader{
@@ -225,4 +226,25 @@ image:hover{
 
 #shadow:hover{
 	cursor: pointer;
+}
+/* Task #6088:  Adding iframe for Zoo Story popup. */
+#storyPopup{
+	position: absolute;
+	top: 3px;
+	right:3px;
+	width: 50%;
+	height:98%;
+	border: 3px solid #4A2500;
+	background-color: #F8ECC2;
+	visibility: hidden;
+}
+#story{
+	width: 100%;
+	height:97%;
+	border: none;
+	background-color: #F8ECC2;
+}
+#storyClose{
+	right: 0px;
+	float: right;
 }

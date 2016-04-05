@@ -5,7 +5,8 @@
  */
 
 /* Initializes a Game Object */
-function Game(){
+function Game()
+{
 
 	// SVG objects for Left map
 	this.leftMap = SVG('leftMap');
@@ -65,13 +66,14 @@ function Game(){
 /* Starts the game by initializing all the game variables 
  * Parameter types: (Game)
  */
-function StartGame(game){
+function StartGame(game)
+{
 	Setup(game);
 }
 
 /* Sets up the game graphics */
-function Setup(game){
-	
+function Setup(game)
+{	
 	AddStartArrows(game, false);
 	AddStartArrows(game, true);
 
@@ -84,7 +86,8 @@ function Setup(game){
 	LinkCheckpoints(game, game.rightPath, true);
 
 	// Set continent names and continent animals
-	if (!game.created){
+	if (!game.created)
+	{
 		var continent0Animals = [new Animal(continent0AnimalNames[0], continent1Name, continent0AnimalShortNames[0]), 
 								new Animal(continent0AnimalNames[1], continent1Name, continent0AnimalShortNames[1]), 
 								new Animal(continent0AnimalNames[2], continent1Name, continent0AnimalShortNames[2])];
@@ -112,7 +115,8 @@ function Setup(game){
 	CreateSpinner();
 	
 	// Inintialize player if player not initialized yet
-	if (game.player0 == null && game.player1 == null){
+	if (game.player0 == null && game.player1 == null)
+	{
 		game.player0 = new Player(player0Name, game.continent0, game.leftMap, game.leftCheckpoints, game.leftCapturePoints, false);
 		game.player1 = new Player(player1Name, game.continent1, game.rightMap, game.rightCheckpoints, game.rightCapturePoints, true);
 	}
@@ -131,20 +135,25 @@ function Setup(game){
 	// Display any message to be displayed in message board
 	AddMessage(game.currentMessage);
 
+	// Task 6088:  Adjust iframe
+	AdjustZooStoriesIFrame();
+
 	game.created = true;
 }
 
 /* Destroys the svg objects of the game */
-function Destroy(game){
-
-	for(var i = 0; i < game.svgObjects.length; i++){
+function Destroy(game)
+{
+	for(var i = 0; i < game.svgObjects.length; i++)
+	{
 		game.svgObjects[i].parent.removeElement(game.svgObjects[i]);
 	}
 	game.svgObjects = new Array();
 }
 
 /* Adds the red start arrows to the board */
-function AddStartArrows(game, right){
+function AddStartArrows(game, right)
+{
 	var map = game.leftMap;
 	if (right) map = game.rightMap;
 
@@ -153,7 +162,8 @@ function AddStartArrows(game, right){
 	var yDeviation = GetMapHeight() * arrowYDeviation;
 	var cpSize = GetMapWidth() * checkpointSize;
 
-	for (var i = 0; i < arrowPolygonCoordinates.length; i++){
+	for (var i = 0; i < arrowPolygonCoordinates.length; i++)
+	{
 		var x = arrowPolygonCoordinates[i][0] * GetMapWidth() * 0.015 + xDeviation;
 		if (right) x = GetMapWidth() - x;
 		var y = arrowPolygonCoordinates[i][1] * GetMapHeight() * 0.015 + yDeviation;
@@ -179,9 +189,9 @@ function AddStartArrows(game, right){
 /* Sets the continent attribute for every animal in animals
  * Parameter types: (list of Animal, boolean)
  */
-function LinkContinentAnimals(animals, right){
+function LinkContinentAnimals(animals, right)
+{
 	var continent = game.continent0;
 	if (right) continent = game.continent1;
-
 	for (var i = 0; i < animals.length; i++) animals[i].continent = continent;
 }
