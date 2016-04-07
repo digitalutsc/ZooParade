@@ -82,9 +82,10 @@ function AnimalSelected(player, animal){
 }
 
 /* Switches players and updates question and answers */
-function Proceed(){
-	if (totalAnimationTime == 0){
-
+function Proceed()
+{
+	if (totalAnimationTime == 0)
+	{
 		var player = game.player0;
 		if (game.right) player = game.player1;
 
@@ -94,9 +95,12 @@ function Proceed(){
 		var nextMap = '#rightMap';
 		if (game.right) nextMap = '#leftMap';
 		
-		if (game.gameOver){
+		if (game.gameOver)
+		{
 			AddMessage("Game Over! " + game.winner.name + " won the game!");
-		} else if (player.animalSelected){
+		}
+		else if (player.animalSelected)
+		{
 			game.right = !game.right;
 			$(currentMap).css('background-color', mapDarkBackgroundColor);
 			$(nextMap).css('background-color', mapBackgroundColor);
@@ -106,16 +110,17 @@ function Proceed(){
 			UpdateQuestion();
 
 			var message = player.name +  "'s turn";
-			if (player.spin && !game.gameOver) {
+			if (player.spin && !game.gameOver) 
+			{
 				message += "<br/>Please spin the Spinner by clicking 'Spin'";
 				$('#spinnerSection').animate({scrollTop: GetPanelHeight()}, spinnerSectionAnimationTime);
 			}
 			AddMessage(message);
-		} else {
-
+		}
+		else
+		{
 			AddMessage(player.name + ", please choose an animal to capture by clicking on the animal image");
 		}
-
 		if (ai && game.right) AIMove();
 	}
 }
@@ -246,14 +251,23 @@ function CorrectAnswerMove(responseText = "")
 				if (paths.length == 1)
 				{
 					var path = paths[0];
-					MovePlayer(player, path[path.length - 1]);
+					//Task #6089 put MovePlayer after animation so that hazard text would supersede answer response text.
+					//alert("total Animation Time before setTimeout:  " + totalAnimationTime);
 					setTimeout(function()
 										{
+											//alert("settimeoutbegin");
 											totalAnimationTime = 0;
+											//alert("settimeoutmiddle1");
 											AddInfoText();
+											//alert("settimeoutmiddle2");
 											AddMessage(message);
+											//alert("settimeoutend");
 										},
 										totalAnimationTime);
+					//alert("beforemain");
+					MovePlayer(player, path[path.length - 1]);
+					//alert("aftermain");
+					//AddInfoText();
 				} 
 				else 
 				{
@@ -278,7 +292,8 @@ function CorrectAnswerMove(responseText = "")
  // just use the response "Wrong Answer!".
 function WrongAnswerMove(responseText = "")
 {
-	if (totalAnimationTime == 0){
+	if (totalAnimationTime == 0)
+	{
 		var player = game.player0;
 		if (game.right) player = game.player1;
 
@@ -288,11 +303,7 @@ function WrongAnswerMove(responseText = "")
 
 		message += "<br/>Check out more info in the answer section<br/>Click on 'Proceed' to continue";
 
-		if (!player.move1 && !player.move2 && !player.move3 && !player.captured)
-		{
-			player.steps = -1;
-			MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 1]);
-		}
+		//Task #6089 put MovePlayer (if statement) after animation so that hazard text would supersede answer response text.
 		// CAPTURE ISSUE --> wrong capture should be back 2!
 		setTimeout(function()
 							{
@@ -301,6 +312,12 @@ function WrongAnswerMove(responseText = "")
 								AddInfoText();
 							},
 							totalAnimationTime);
+
+		if (!player.move1 && !player.move2 && !player.move3 && !player.captured)
+		{
+			player.steps = -1;
+			MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 1]);
+		}
 	}
 }
 
@@ -335,7 +352,8 @@ function UpdateQuestion()
 /* Adds the message in the message section of the board
  * Parameter types: (String)
  */
-function AddMessage(message){
+function AddMessage(message)
+{
 	var div = document.getElementById('messageBoxContent');
 	div.style.fontSize = GetMapWidth() * messageFontScale;
 	div.innerHTML = '<center>' + message + '</center>';
@@ -387,9 +405,10 @@ function AddQuestionText()
 }
 
 /* Adds the answer in the answer section of the game */
-function AddAnswerText(){
-
-	if (qAPair != null){
+function AddAnswerText()
+{
+	if (qAPair != null)
+	{
 		var answerHeader = document.getElementById('answerHeader');
 		answerHeader.innerHTML = "Answer";
 		answerHeader.style.fontSize = GetMapWidth() * headerFontScale;
@@ -408,8 +427,10 @@ function AddAnswerText(){
 }
 
 /* Adds the info text in the answer section of the game */
-function AddInfoText(){
-	if (qAPair != null){
+function AddInfoText()
+{
+	if (qAPair != null)
+	{
 		var answerHeader = document.getElementById('answerHeader');
 		answerHeader.style.fontSize = GetMapWidth() * headerFontScale;
 		answerHeader.innerHTML = "Information";

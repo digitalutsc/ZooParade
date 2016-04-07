@@ -97,10 +97,14 @@ function AddVisitedCheckpoint(player, checkpoint){
 	player.visitedCheckpoints.push(checkpoint);
 }
 
-function VisitCheckpoint(player, checkpoint, pass){
-	if (checkpoint.capture){
-		if (player.currentAnimal == checkpoint.animal){
-			if (pass){
+function VisitCheckpoint(player, checkpoint, pass)
+{
+	if (checkpoint.capture)
+	{
+		if (player.currentAnimal == checkpoint.animal)
+		{
+			if (pass)
+			{
 				// Animal flees from the capture point
 				checkpoint.capture = false;
 				player.capturePoints[checkpoint.index] = false;
@@ -151,7 +155,8 @@ function AddPlayerPlaceHolder(game, right){
 /* Moves the player to the given checkpoint
  * Parameter types: (Player, Checkpoint)
  */
-function MovePlayer(player, checkpoint){
+function MovePlayer(player, checkpoint)
+{
 
 	if (player.currentCheckpoint != null) AddVisitedCheckpoint(player, player.currentCheckpoint);
 
@@ -164,13 +169,29 @@ function MovePlayer(player, checkpoint){
 	player.steps = 1;
 	player.spin = (checkpoint.redS || checkpoint.greenS);
 
-	setTimeout(function(){
-    	VisitCheckpoint(player, player.currentCheckpoint, false);
-    	if (player.currentCheckpoint.hazard){
-    		player.steps = -2;
-    		MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 2]);
-    	}
-	}, totalAnimationTime);
+	setTimeout(function()
+						{
+					    	VisitCheckpoint(player, player.currentCheckpoint, false);
+					    	if (player.currentCheckpoint.hazard)
+					    	{
+					    		player.steps = -2;
+
+					    		// Task #6089:  Add hazard text to user display.
+					    		var hazardText = "";
+					    		if (player.currentCheckpoint.index == 19)
+					    		{	hazardText = "Animal alarmed &mdash; Back 2 towards fresh trail.";
+					    		}
+					    		else //if (player.currentCheckpoint.index == 30)
+					    		{	hazardText = "Storm &mdash; Trail blocked &mdash; Go back 2 towards fresh trail.";
+					    		}
+
+					    		AddMessage(hazardText);
+					    		//alert(player.currentCheckpoint.index);
+					    		MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 2]);
+					    		//alert("afterMovePlayer\nTotalanimationtime is " + totalAnimationTime);
+					    	}
+						}, 
+						totalAnimationTime);
 
 	if (scrollUp) $('#spinnerSection').animate({scrollTop: -GetPanelHeight()}, 1000);
 }
@@ -178,8 +199,8 @@ function MovePlayer(player, checkpoint){
 /* Moves the given player forward 
  * Parameter types: (Player, Checkpoint, float, float, float)
  */
-function MoveForward(player, checkpoint){
-
+function MoveForward(player, checkpoint)
+{
 	var xDeviation = GetMapWidth() * playerPlaceholderXDeviation;
 	var yDeviation = GetMapHeight() * playerPlaceholderYDeviation;
 
@@ -215,22 +236,25 @@ function MoveForward(player, checkpoint){
 /* Moves the given player backwards 
  * Parameter types: (Player, Checkpoint, float, float, float)
  */
-function MoveBackwards(player, checkpoint){
-
+function MoveBackwards(player, checkpoint)
+{
 	var xDeviation = GetMapWidth() * playerPlaceholderXDeviation;
 	var yDeviation = GetMapHeight() * playerPlaceholderYDeviation;
 
 	player.visitedCheckpoints.pop();
-	if (player.steps < -1){
+	if (player.steps < -1)
+	{
 		var path = new Array();
-		while (player.steps != 0){
+		while (player.steps != 0)
+		{
 			path.push(player.visitedCheckpoints.pop());
 			player.steps++;
 		}
 
 		var totalDistance = 0;
 		var distances = new Array();
-		for (var i = 0; i < path.length - 1; i++){
+		for (var i = 0; i < path.length - 1; i++)
+		{
 			var distance = Math.pow(Math.pow(path[i].x - path[i+1].x, 2) + Math.pow(path[i].y - path[i+1].y, 2), 0.5);
 			totalDistance += distance;
 			distances.push(distance);
@@ -239,7 +263,9 @@ function MoveBackwards(player, checkpoint){
 		totalAnimationTime = totalDistance / GetMapWidth() * playerMoveSpeed;
 		MovePlayerAnimation(player, path, totalDistance, distances, xDeviation, yDeviation, false);
 
-	} else {
+	} 
+	else 
+	{
 		totalAnimationTime = 150;
 		player.placeHolder.animate(150).move(checkpoint.x + xDeviation, checkpoint.y + yDeviation);
 		player.visitedCheckpoints.pop();

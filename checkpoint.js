@@ -31,13 +31,13 @@ function Checkpoint(x, y, capture, greenS, redS, hazard, index, right){
  * green S point, red S point and hazard point for each checkpoint for the given map
  * Parameter types: (Game, boolean)
  */
-function CreateMapCheckpoints(game, map, checkpointsList, right){
-	
+function CreateMapCheckpoints(game, map, checkpointsList, right)
+{
 	var capturePoints = game.leftCapturePoints;
 	if (right) capturePoints = game.rightCapturePoints;
 
-	for (var i = 0; i < positions.length; i++){
-
+	for (var i = 0; i < positions.length; i++)
+	{
 		var cpSize = GetMapWidth() * checkpointSize;
 		if (hazardPoints[i] || greenSPoints[i] || redSPoints[i] || capturePoints[i]) cpSize = GetMapWidth() * specialCheckpointSize;
 		
@@ -45,10 +45,13 @@ function CreateMapCheckpoints(game, map, checkpointsList, right){
 		if (right) x = (GetMapWidth() - (GetMapWidth() * positions[i][0] * mapScale)) - (GetMapWidth() * moveHorizontal);
 		var y = (GetMapHeight() * positions[i][1] * mapScaleY) + (GetMapHeight() * moveVertical);
 		
-		if (game.created) {
+		if (game.created) 
+		{
 			checkpointsList[i].x = x;
 			checkpointsList[i].y = y;
-		} else {
+		} 
+		else 
+		{
 			var checkpoint = new Checkpoint(x, y, capturePoints[i], greenSPoints[i], redSPoints[i], hazardPoints[i], i, right);
 			checkpointsList.push(checkpoint);
 		}

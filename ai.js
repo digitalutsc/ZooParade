@@ -10,69 +10,85 @@ var ai = true;
  * Note: This is called when ai is true and the 
  * right player (player1) is playing
  */
-function AIMove(){
-
+function AIMove()
+{
 	totalAnimationTime = 1000;
 
-	setTimeout(function(){
-		totalAnimationTime = 0;
+	setTimeout(function()
+						{
+							totalAnimationTime = 0;
+							var player = game.player1;
 
-		var player = game.player1;
+							if (player.currentAnimal == null)
+							{
+								// Choose an animal to capture
+								var animals = new Array();
+								for (var i = 0; i < player.continent.animals.length; i++)
+								{
+									if (player.animalsCaptured.indexOf(player.continent.animals[i]) == -1)
+										animals.push(player.continent.animals[i]);
+								}
 
-		if (player.currentAnimal == null){
-			// Choose an animal to capture
-			var animals = new Array();
-			for (var i = 0; i < player.continent.animals.length; i++){
-				if (player.animalsCaptured.indexOf(player.continent.animals[i]) == -1)
-					animals.push(player.continent.animals[i]);
-			}
+								AnimalImageClickFunction(animals[Math.floor(Math.random() * animals.length)]);
+							} 
+							else if (player.move1 || player.move2 || player.move3 || (!player.currentCheckpoint.redS && !player.currentCheckpoint.greenS))
+							{
+								var rand = Math.floor(Math.random() * 9);
+								if (rand <= 7)
+								{
+									// Correct Answer Move
+									CorrectAnswerMove();
 
-			AnimalImageClickFunction(animals[Math.floor(Math.random() * animals.length)]);
-		} else if (player.move1 || player.move2 || player.move3 || (!player.currentCheckpoint.redS && !player.currentCheckpoint.greenS)){
-			var rand = Math.floor(Math.random() * 9);
+									setTimeout(function()
+														{
+															if (player.possiblePaths != null && player.possiblePaths.length > 1)
+															{
+																// Choose a path
+																AIChoosePath();
+															}
+														}, 
+														totalAnimationTime);
+										
+								} 
+								else 
+								{
+									// Wrong Answer Move
+									WrongAnswerMove();
+								}
+							} 
+							else if (player.currentCheckpoint.redS || player.currentCheckpoint.greenS)
+							{
+								// Disable the spin button for the player
+								document.getElementById("spinButtonGroup").setAttribute("onclick","");
 
-			if (rand <= 7){
-				// Correct Answer Move
-				CorrectAnswerMove();
+								// Spin the spinner
+								totalAnimationTime = spinnerSectionAnimationTime * 1.2;
+								setTimeout(function()
+													{
+														totalAnimationTime = 0;
+														Spin();
+														// Wait for the spinner to stop spinning
+														totalAnimationTime = spinnerAnimationTime + 1000;
+														setTimeout(function()
+																			{
+																				totalAnimationTime = 0;
+																				AIChoosePath();
+																				document.getElementById("spinButtonGroup").setAttribute("onclick","Spin()");
+																			}, 
+																			totalAnimationTime);
 
-				setTimeout(function(){
-					if (player.possiblePaths != null && player.possiblePaths.length > 1){
-						// Choose a path
-						AIChoosePath();
-					}
-				}, totalAnimationTime);
-					
-			} else {
-				// Wrong Answer Move
-				WrongAnswerMove();
-			}
-		} else if (player.currentCheckpoint.redS || player.currentCheckpoint.greenS){
-			// Disable the spin button for the player
-			document.getElementById("spinButtonGroup").setAttribute("onclick","");
-
-			// Spin the spinner
-			totalAnimationTime = spinnerSectionAnimationTime * 1.2;
-			setTimeout(function(){
-				totalAnimationTime = 0;
-				Spin();
-				// Wait for the spinner to stop spinning
-				totalAnimationTime = spinnerAnimationTime + 1000;
-				setTimeout(function(){
-					totalAnimationTime = 0;
-					AIChoosePath();
-					document.getElementById("spinButtonGroup").setAttribute("onclick","Spin()");
-				}, totalAnimationTime);
-
-			}, totalAnimationTime);
-		}
-	}, totalAnimationTime);
+													}, 
+													totalAnimationTime);
+							}
+						}, 
+						totalAnimationTime);
 }
 
 /* Chooses the path for the AI to move along when there are
  * multiple paths
  */
-function AIChoosePath(){
-
+function AIChoosePath()
+{
 	var player = game.player1;
 	var paths = player.possiblePaths;
 	var path;
@@ -81,21 +97,29 @@ function AIChoosePath(){
 	var rejectedPath = -1;
 	var hazardPath = -1;
 
-	if (paths.length == 1){
+	if (paths.length == 1)
+	{
 		path = paths[0];
 		checkpoint = path[path.length - 1];
-	} else {
-		for (var i = 0; i < paths.length; i++){
+	} 
+	else 
+	{
+		for (var i = 0; i < paths.length; i++)
+		{
 			var cp = paths[i][paths[i].length - 1];
-			if (cp.capture && (cp.animal == player.currentAnimal)){
+			if (cp.capture && (cp.animal == player.currentAnimal))
+			{
 				path = paths[i];
 				break;
 			} 
 			if (cp.hazard) hazardPath = i;
-			else {
+			else 
+			{
 				// Remove the path if player passes by the target animal
-				for (var j = 0; j < paths[i].length - 1; j++){
-					if (paths[i][j].animal == player.currentAnimal){
+				for (var j = 0; j < paths[i].length - 1; j++)
+				{
+					if (paths[i][j].animal == player.currentAnimal)
+					{
 						rejectedPath = i;
 						break;
 					}
@@ -118,8 +142,10 @@ function AIChoosePath(){
 	
 	MovePlayer(player, checkpoint);
 
-	setTimeout(function(){
-		totalAnimationTime = 0;
-		Proceed();
-	}, totalAnimationTime);
+	setTimeout(function()
+						{
+							totalAnimationTime = 0;
+							Proceed();
+						}, 
+						totalAnimationTime);
 }
