@@ -248,3 +248,7 @@ image:hover{
 	right: 0px;
 	float: right;
 }
+
+.caption{caption-side:bottom; width:350px; text-align:left; margin: 5px; font-style:italic;
+}
+
