@@ -252,22 +252,14 @@ function CorrectAnswerMove(responseText = "")
 				{
 					var path = paths[0];
 					//Task #6089 put MovePlayer after animation so that hazard text would supersede answer response text.
-					//alert("total Animation Time before setTimeout:  " + totalAnimationTime);
 					setTimeout(function()
 										{
-											//alert("settimeoutbegin");
 											totalAnimationTime = 0;
-											//alert("settimeoutmiddle1");
 											AddInfoText();
-											//alert("settimeoutmiddle2");
 											AddMessage(message);
-											//alert("settimeoutend");
 										},
 										totalAnimationTime);
-					//alert("beforemain");
 					MovePlayer(player, path[path.length - 1]);
-					//alert("aftermain");
-					//AddInfoText();
 				} 
 				else 
 				{

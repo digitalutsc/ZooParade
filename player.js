@@ -178,6 +178,7 @@ function MovePlayer(player, checkpoint)
 
 					    		// Task #6089:  Add hazard text to user display.
 					    		var hazardText = "";
+					    		
 					    		if (player.currentCheckpoint.index == 19)
 					    		{	hazardText = "Animal alarmed &mdash; Back 2 towards fresh trail.";
 					    		}
@@ -186,9 +187,8 @@ function MovePlayer(player, checkpoint)
 					    		}
 
 					    		AddMessage(hazardText);
-					    		//alert(player.currentCheckpoint.index);
 					    		MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 2]);
-					    		//alert("afterMovePlayer\nTotalanimationtime is " + totalAnimationTime);
+					    		totalAnimationTime = 0;								//Task #6123:  This variable must be set to 0 for Proceed() function.
 					    	}
 						}, 
 						totalAnimationTime);
