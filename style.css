@@ -41,7 +41,7 @@ body{
 	height: 25%;
 	color: white;
 	font-size: 3.5em;
-	font-family: Courier;
+	font-family: font-family:"Times New Roman", Times, serif;
 
 }
 
@@ -66,7 +66,7 @@ body{
 	width: 100%;
 	height: 30%;
 	border-radius: 2em;
-	font-family: Courier;
+	font-family:"Times New Roman", Times, serif;
 	color: #FFFF66;
 	overflow: hidden;
 }
@@ -101,7 +101,7 @@ body{
 }
 
 #questionHeader{
-	font-family: Courier;
+	font-family:"Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1.5em;
 }
@@ -109,7 +109,7 @@ body{
 #questionContent{
 	width: 90%;
 	height: 85%;
-	font-family: Courier;
+	font-family:"Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1em;
 	overflow: auto;
@@ -143,7 +143,7 @@ body{
 }
 
 #answerHeader{
-	font-family: Courier;
+	font-family: font-family:"Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1.5em;
 }
@@ -151,7 +151,7 @@ body{
 #answerContent{
 	width: 100%;
 	height: 85%;
-	font-family: Courier;
+	font-family:"Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1em;
 	overflow: auto;
@@ -177,7 +177,7 @@ color: #005C1F;
 .mcqOption{
 	background-color: #FFFF66;
 	color: #4A2500;
-	font-family: Courier;
+	font-family:"Times New Roman", Times, serif;
 	border-radius: 2em;
 	font-size: 1.5em;
 }
@@ -237,6 +237,7 @@ image:hover{
 	border: 3px solid #4A2500;
 	background-color: #F8ECC2;
 	visibility: hidden;
+	
 }
 #story{
 	width: 100%;
@@ -248,7 +249,7 @@ image:hover{
 	right: 0px;
 	float: right;
 }
-
-.caption{caption-side:bottom; width:400px; text-align:center; margin: 5px; font-style:italic;
+.caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-style:italic; background-color: #F8ECC2;
 }
+
 
