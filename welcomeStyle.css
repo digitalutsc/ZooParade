@@ -36,7 +36,7 @@ body{
 
 #front{
 	position: absolute;
-	background-image: url("Resources/cover.jpg");
+	background-image: url("Resources/cover2.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 }
