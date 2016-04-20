@@ -136,7 +136,7 @@ function Setup(game)
 	AddMessage(game.currentMessage);
 
 	// Task 6088:  Adjust iframe
-	AdjustZooStoriesIFrame();
+	//AdjustZooStoriesIFrame();
 
 	game.created = true;
 }
