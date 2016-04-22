@@ -171,12 +171,15 @@ function SetAnimalImageOnClick(animal){
 /* Adds click function to the animal images
  * Parameter types: (Animal)
  */
-function AnimalImageClickFunction(animal){
+function AnimalImageClickFunction(animal)
+{
 	var player = game.player0;
 	if (game.right) player = game.player1;
 
-	if (animal.continent.checkpoints[0].right == game.right) {
-		if (player.currentAnimal == null && player.animalsCaptured.indexOf(animal) == -1) {
+	if (animal.continent.checkpoints[0].right == game.right) 
+	{
+		if (player.currentAnimal == null && player.animalsCaptured.indexOf(animal) == -1) 
+		{
 			player.currentAnimal = animal;
 			player.animalSelected = true;
 			animal.selected = true;

@@ -55,7 +55,6 @@ $(window).resize(function(){
 	PutAnimalsInZoo(game.zoo1Animals, true);
 });
 
-
 FixBodySize();
 Setup(game);
 AddMessage(game.player0.name + ", please choose an animal to capture by clicking on the animal image");
@@ -208,7 +207,8 @@ function CorrectAnswerMove(responseText = "")
 		if (message == "")
 			message = "Correct Answer!";
 		
-		message += "<br/>Check out more info in the answer section<br/>Click on 'Proceed' to continue";
+		// Task #6076 removing "Check out more info in the answer section", since it crowds the area, is superfluous, and we want to emphasise the proceed button.  Adding player's name.
+		message += '<br/><br/>' + player0Name + ', click "Proceed" button to continue';
 
 		if (player.move1 || player.move2 || player.move3)
 		{
@@ -265,7 +265,7 @@ function CorrectAnswerMove(responseText = "")
 				{
 					for (var i = 0; i < player.possiblePaths.length; i++)
 					{
-						SelectCheckpoint (player.possiblePaths[i][player.possiblePaths[i].length - 1]);
+						SelectCheckpoint(player.possiblePaths[i][player.possiblePaths[i].length - 1]);
 					}
 
 					AddMessage("Click on one of the highlighted checkpoints to move player");
@@ -293,7 +293,8 @@ function WrongAnswerMove(responseText = "")
 		if (message == "")
 			message = "Wrong Answer!";
 
-		message += "<br/>Check out more info in the answer section<br/>Click on 'Proceed' to continue";
+		// Task #6076 removing "Check out more info in the answer section", since it crowds the area, is superfluous, and we want to emphasise the proceed button.
+		message += '<br/><br/>' + player0Name + ', click the "Proceed" button to continue';
 
 		//Task #6089 put MovePlayer (if statement) after animation so that hazard text would supersede answer response text.
 		// CAPTURE ISSUE --> wrong capture should be back 2!

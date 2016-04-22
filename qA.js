@@ -60,20 +60,36 @@ function ProcessCSV(results, right)
 			var question = row[questionIndex];
 			var answer = "<br/>";
 
+			// Task #6076:  Added fields to allow ai module to access more information about the question and its answer.  Also remove onclick events for AI.
+			var multiChoice = false;
+			var answerButtonID = "";
+
 			if (row[binaryIndex].trim() == "TRUE")
 			{
 				if (row[correctIndex].trim() == "TRUE")
+				{
 					// Removed for Feature #6029:
 					// answer = correctYesHTML;
-					answer = '<center> <div id="yesButton" onclick="CorrectAnswerMove(\'' + row[rightResponseIndex] + '\')">Yes</div><div id="noButton" onclick="WrongAnswerMove(\'' + row[wrongResponseIndex] + '\')">No</div> </center>';
+					answerButtonID = "yesButton";
+					if (!(right && ai))	// don't add onclick functionality for the AI player to prevent user from clicking AIs buttons.
+						answer = '<center> <div id="yesButton" onclick="CorrectAnswerMove(\'' + row[rightResponseIndex] + '\')">Yes</div><div id="noButton" onclick="WrongAnswerMove(\'' + row[wrongResponseIndex] + '\')">No</div> </center>';
+					else
+						answer = '<center> <div id="yesButton">Yes</div><div id="noButton">No</div> </center>';
+				}
 				else
+				{
 					// Removed for Feature #6029:
 					// answer = correctNoHTML;
-					answer = '<center> <div id="yesButton" onclick="WrongAnswerMove(\'' + row[wrongResponseIndex] + '\')">Yes</div><div id="noButton" onclick="CorrectAnswerMove(\'' + row[rightResponseIndex] + '\')">No</div> </center>';
-					
+					answerButtonID = "noButton";
+					if (!(right && ai))	// don't add onclick functionality for the AI player to prevent user from clicking AIs buttons.
+						answer = '<center> <div id="yesButton" onclick="WrongAnswerMove(\'' + row[wrongResponseIndex] + '\')">Yes</div><div id="noButton" onclick="CorrectAnswerMove(\'' + row[rightResponseIndex] + '\')">No</div> </center>';
+					else
+						answer = '<center> <div id="yesButton">Yes</div><div id="noButton">No</div> </center>';
+				}
 			} 
 			else
 			{
+				multiChoice = true;
 				var choices = row[choicesIndex].split("/");
 				var responses = row[rightResponseIndex].split("/");						// Feature #6029:  Added responses also parsed by '/' on the csv
 				var correctAnswer = row[correctIndex].trim();
@@ -83,9 +99,17 @@ function ProcessCSV(results, right)
 					var label = choices[j].trim();
 					var action = "WrongAnswerMove('" + responses[j].trim() + "')";		// Feature #6029:  Add responses to action.
 					if (label == correctAnswer)
+					{
 						action = "CorrectAnswerMove('" + responses[j].trim() + "')";
+						answerButtonID = "mcq" + j;
+					}
 					
-					answer += '<div class="mcqOption" cursor="pointer" onClick="' + action + '"><center>' + label + '</center></div><br/>';
+					// Task #6076: need to add ids for each div so it can be clicked.
+					if (!(right && ai))	// don't add onclick functionality for the AI player to prevent user from clicking AIs buttons.
+						answer += '<div id="mcq' + j + '" class="mcqOption" cursor="pointer" onClick="' + action + '"><center>' + label + '</center></div><br/>';
+					else
+						answer += '<div id="mcq' + j + '" class="mcqOption" cursor="pointer"><center>' + label + '</center></div><br/>';
+
 				}
 			}
 
@@ -95,7 +119,7 @@ function ProcessCSV(results, right)
 				info = "<br>" + row[infoIndex] + "<br><br><a href=\"#\" onClick=\"ShowZooStoryPopup(true,'" + row[zooStoryIndex] + "'); return false;\">" + row[zooStoryLinkTextIndex] + "</a>";
 			}
 
-			var questionObject = new Question(question, answer, info);
+			var questionObject = new Question(question, answer, info, multiChoice, answerButtonID);
 
 			if (row[typeIndex] == startQuestion) 
 				playerQuestionSet.start.push(questionObject);

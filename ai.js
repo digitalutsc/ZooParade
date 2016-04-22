@@ -33,27 +33,76 @@ function AIMove()
 							} 
 							else if (player.move1 || player.move2 || player.move3 || (!player.currentCheckpoint.redS && !player.currentCheckpoint.greenS))
 							{
+								var currentQuestion = qAPair;
 								var rand = Math.floor(Math.random() * 9);
 								if (rand <= 7)
 								{
 									// Correct Answer Move
-									CorrectAnswerMove();
+
+									// Task #6076:  Simulate button click.  Find correct answer in qAPair global variable.
+									var buttonDiv = document.getElementById(currentQuestion.answerButtonID);
+									buttonDiv.style.backgroundColor = "#4A2500";
+									buttonDiv.style.color = "#FFFF66";
+									buttonDiv.style.border = "1px solid #FFFF66";
 
 									setTimeout(function()
 														{
-															if (player.possiblePaths != null && player.possiblePaths.length > 1)
-															{
-																// Choose a path
-																AIChoosePath();
-															}
-														}, 
-														totalAnimationTime);
-										
+															CorrectAnswerMove();
+															setTimeout(function()
+																				{
+																					if (player.possiblePaths != null && player.possiblePaths.length > 1)
+																					{
+																						// Choose a path
+																						AIChoosePath();
+																					}
+																				}, 
+																				totalAnimationTime);
+														},
+														2000);	
 								} 
 								else 
 								{
 									// Wrong Answer Move
-									WrongAnswerMove();
+
+									// Task #6076:  Simulate button click.  Choose incorrect answer from analysing qAPair global variable.
+									var buttonID = "";
+									// determine which wrong button to select.
+									if (currentQuestion.multiChoice)
+									{
+										// randomly select which of the two wrong answers the computer will choose (the first or second)
+										var chooseFirst = Math.random() < 0.5 ? true : false;
+
+										// remove the index that is the correct answer
+										var availIndicies = ["0", "1", "2"];
+										var buttonIndex = currentQuestion.answerButtonID.charAt(3);
+										availIndicies.splice(Number(buttonIndex), 1);
+
+										// change the buttonID to the selected wrong answer
+										if (chooseFirst)
+											buttonID = currentQuestion.answerButtonID.replace(buttonIndex, availIndicies[0]);
+										else
+											buttonID = currentQuestion.answerButtonID.replace(buttonIndex, availIndicies[1]);
+									}
+									else
+									{
+										if (currentQuestion.answerButtonID == "yesButton")
+											buttonID = "noButton";
+										else
+											buttonID = "yesButton";
+									}
+
+									var buttonDiv = document.getElementById(buttonID);
+									buttonDiv.style.backgroundColor = "#4A2500";
+									buttonDiv.style.color = "#FFFF66";
+									buttonDiv.style.border = "1px solid #FFFF66";
+									if (typeof buttonDiv.onclick == "function")
+									{
+										setTimeout(function()
+															{
+																WrongAnswerMove();
+															},
+															2000);
+									}
 								}
 							} 
 							else if (player.currentCheckpoint.redS || player.currentCheckpoint.greenS)

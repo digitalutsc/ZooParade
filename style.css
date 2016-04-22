@@ -187,6 +187,14 @@ color: #005C1F;
 	color: green;
 }
 
+/*Task #6076 Invert colours when clicking buttons.  */
+.mcqOption:active{
+	background-color: #4A2500;
+	color: #FFFF66;
+	border: 1px solid #FFFF66;
+
+}
+
 #yesButton, #noButton, #proceedButton{
 	background: #FFFF66;
 	color: #4A2500;
@@ -203,6 +211,14 @@ color: #005C1F;
 	cursor: pointer;
 	color: green;
 }
+
+/*Task #6076 Invert colours when clicking buttons.  */
+#yesButton:active, #noButton:active, #proceedButton:active{
+	background-color: #4A2500;
+	color: #FFFF66;
+	border: 1px solid #FFFF66;
+}
+
 
 #yesButton{
 	float:left;
