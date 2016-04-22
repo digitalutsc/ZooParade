@@ -95,14 +95,11 @@ function AIMove()
 									buttonDiv.style.backgroundColor = "#4A2500";
 									buttonDiv.style.color = "#FFFF66";
 									buttonDiv.style.border = "1px solid #FFFF66";
-									if (typeof buttonDiv.onclick == "function")
-									{
-										setTimeout(function()
-															{
-																WrongAnswerMove();
-															},
-															2000);
-									}
+									setTimeout(function()
+														{
+															WrongAnswerMove();
+														},
+														2000);
 								}
 							} 
 							else if (player.currentCheckpoint.redS || player.currentCheckpoint.greenS)

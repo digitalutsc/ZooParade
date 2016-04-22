@@ -207,7 +207,7 @@ function SetCheckpointMouseout(checkpoint){
 	});
 }
 
-/* Sets the color of the given checkpoint
+/* Sets the colour of the given checkpoint
  * Parameter types: (Checkpoint)
  */
 function SetCheckpointColor(checkpoint){
