@@ -105,10 +105,11 @@ function ProcessCSV(results, right)
 					}
 					
 					// Task #6076: need to add ids for each div so it can be clicked.
+					// Added class mcqOptionAI so that the buttons won't invert when the user clicks on the AI's question (still needs to be fixed for Yes/No buttons)
 					if (!(right && ai))	// don't add onclick functionality for the AI player to prevent user from clicking AIs buttons.
 						answer += '<div id="mcq' + j + '" class="mcqOption" cursor="pointer" onClick="' + action + '"><center>' + label + '</center></div><br/>';
 					else
-						answer += '<div id="mcq' + j + '" class="mcqOption" cursor="pointer"><center>' + label + '</center></div><br/>';
+						answer += '<div id="mcq' + j + '" class="mcqOptionAI" cursor="pointer"><center>' + label + '</center></div><br/>';
 
 				}
 			}

@@ -174,7 +174,8 @@ a:visited {
 color: #005C1F;
 }
 
-.mcqOption{
+/* Task #6076:  added mcqOptionAI to prevent inversion of AI multichoice buttons by user click. */
+.mcqOption, .mcqOptionAI{
 	background-color: #FFFF66;
 	color: #4A2500;
 	font-family:"Times New Roman", Times, serif;
@@ -195,7 +196,7 @@ color: #005C1F;
 
 }
 
-#yesButton, #noButton, #proceedButton{
+#yesButton, #noButton, #proceedButton/*, .buttonAI*/{
 	background: #FFFF66;
 	color: #4A2500;
 	vertical-align: middle;
