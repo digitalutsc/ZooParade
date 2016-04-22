@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Play Game</title>
+<script src="jquery.js"></script>
+<script src="svg.js"></script>
+<script src="Start.js"></script>
+<link rel="stylesheet" type="text/css" href="welcomeStyle.css"/>
+</head>
+
+<body>
+<div id="information">
+  <p><b>MARLIN PERKINS</b>, America's most popular Zoo Director, highlights the adventure of tracking and capturing wild animals on Four Continents. You are a <b>Zoo Director</b> assigned to capture and transport 3 wild animals to the Zoo. Pick a continent and enter your name. It's you versus the computer, and the first one that captures all the animals and transports them back to the Zoo wins!</p>
+</div>
+<div id="back">
+  <div id="interface">
+    <form action="gameplay.php" method="post">
+      <div id="chooseContinent" class="header">Select a Continent</div>
+      
+      <div id="TextBox">
+        <div id="TextBoxHeader" class="header">&nbsp<!--Type Your Name--></div>
+        <input type="text" id="myText" name="PlayerName" placeholder="Type Your Name" style="width: 200px;">
+        </input>
+        <br>
+        <input id="OptionButton" class="button" type="submit" value="Let's Go!">
+        </input>
+      </div>
+      
+
+      <input id="radio0" type="radio" name="continent" value="North America">
+      <label id="NorthAmerica"  for="radio0" class="continentContainer">
+      <div class="continent">
+        <div class="header">North America</div>
+      </div>
+      </label>
+      </input>
+      <input id="radio1" type="radio" name="continent" value="South America">
+      <label id="SouthAmerica"  for="radio1" class="continentContainer">
+      <div class="continent">
+        <div class="header">South America</div>
+      </div>
+      </label>
+      </input>
+      <input id="radio2" type="radio" name="continent" value="Asia">
+      <label id="Asia"  for="radio2" class="continentContainer">
+      <div class="continent">
+        <div class="header">Asia</div>
+      </div>
+      </label>
+      </input>
+      <input id="radio3" type="radio" name="continent" value="Africa">
+      <label id="Africa"  for="radio3" class="continentContainer">
+      <div class="continent"id="cont3">
+        <div class="header">Africa</div>
+      </div>
+      </label>
+      </input>
+    </form>
+  </div>
+</div>
+</body>
+</html>
+</body>
+</html>

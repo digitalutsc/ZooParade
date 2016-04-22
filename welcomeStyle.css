@@ -5,26 +5,24 @@ body{
 	margin-left: 0px;
 /*	min-height: 1000px;
 	min-width: 1800px;*/
-	background-color: #F8ECC2;
-	font-family: Courier;
+	background-color: #ffffff;
+	font-family: Georgia, "Times New Roman", Times, serif;
 	opacity: .7%;
 }
 
 #information{
-	height: 20%;
-	background-color: #4A2500;
-	color: #FFFF66;
-	padding-left: 15px;
-	padding-right: 15px;
-	font-family:"Times New Roman", Times, serif;
+	height: 30%;
+	background-color: #ffffff;
+	color: #010101;
+	padding-left: 150px;
+	padding-right: 150px;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size: 1.25em;
 	overflow-y: auto;
 	line-height: 120%
 }
 
-.tryitbtn{
 
-}
 
 #front, #back{
 	height:100%;
@@ -35,34 +33,12 @@ body{
 }
 
 #front{
-	position: absolute;
-	background-image: url("Resources/cover2.png");
-	background-size: cover;
+	position:relative;
+	background-image: url("Resources/Small_Cover_Image.png");
 	background-repeat: no-repeat;
+	background-position: center; 
 }
 
-#back{
-	position: absolute;
-	transform: rotateY(180deg);
-	background-color: #8DE670; 
-}
-
-#flipContainer {
-  	height: 77%;		/* Set at 77 to prevent scroll bars */
-  	position: relative;
-}
-
-#flipBtn{
- 	perspective: 1000;
-  	z-index: 1;
-}
-
-#f1_card{
-	height: 100%;
-
-  	transform-style: preserve-3d;
-  	transition: all 1.0s ease-out;
-}
 
 #interface{
 	height: 100%;
@@ -92,7 +68,7 @@ a:link{
 }
 
 .button:hover{
-    color: green;
+    color: orange;
     cursor: pointer;
 }
 
@@ -111,8 +87,10 @@ a:link{
 #chooseContinent{
 	text-align: center;
 	float: left;
-	height: 10%;
+	height: 75%;
 	width: 80%;
+	padding-bottom:25px;
+	
 }
 
 #NorthAmerica{
@@ -121,10 +99,12 @@ a:link{
 
 #Asia{
 	background-image: url("Resources/SVG/Asia.svg");
+	
 }
 
 #Africa{
 	background-image: url("Resources/SVG/Africa.svg");
+
 }
 
 #SouthAmerica{
@@ -144,7 +124,7 @@ input[type="radio"]:checked + label {
 }
 
 .continent{
-		height: 90%;
+		height: 600px;
 }
 
 .continentContainer{
@@ -152,8 +132,7 @@ input[type="radio"]:checked + label {
 	background-position: center;
 	background-size: 100%;
 	background-repeat: no-repeat;
-
-	/*min-height: 90%;*/
+	min-height: 75%;
 	width: 19%;
 	height: 90%;
 	float: left;
@@ -177,4 +156,8 @@ input[type="radio"]:checked + label {
 	height: 10%;
 	text-align: center;
 	font-weight: bold;
+}
+
+.tryitbtn{
+
 }

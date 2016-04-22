@@ -1,7 +1,6 @@
 <html>
 <head>
 	<title>Welcome Page</title>
-	
 	<script src="jquery.js"></script>
 	<script src="svg.js"></script>
 	<script src="Start.js"></script>
@@ -12,68 +11,15 @@
 	<div id="information">
 		<br>
 	
-    <p>Welcome to an online adaptation of the 1954 board game, <i>Marlin Perkins'... ZOO PARADE.</i></p>
+    <h3>Welcome to an online adaptation of the 1954 board game, <i>Marlin Perkins'... ZOO PARADE.</i></h3>
     
     <p>Marlin Perkins was a 1950s celebrity who turned the experience of zoo work into a television spectacle. With his first television show <i> Zoo Parade</i> (1945-1955), Perkins familiarized American audiences with animals at the Lincoln Park Zoo.  Perkins went on to create the TV show <i>Mutual of Omaha's Wild Kingdom</i>(1963-1984), which showcased wildlife. This board game was designed to be educational, teaching players about the diet and habits of wild animals.</p>
 
 <p>Now, playing the board game offers a window into the 20th century American animal trade: how animals were tracked, captured, and transported back to zoos. Play the game and click links to read analysis by Professor and Historian Daniel Bender, author of "The Animal Game: Searching for Wildness at the American Zoo"</p>
 
 	</div>
-
-	<div id="flipContainer">	
-		<div id="f1_card">
-			<div id="front">
-				<div class="button" onClick="Flip(f1_card)">Choose Options</div>
-				<a href="gameplay.php"><div class="button">Play Now</div></a>
-			</div>
-
-			<div id="back">
-				<div id="interface">
-					<form action="gameplay.php" method="post">
-						<div id="chooseContinent" class="header">Select a Continent</div>
-						
-						<div id="TextBox">
-							<div id="TextBoxHeader" class="header">&nbsp<!--Type Your Name--></div>
-							<input type="text" id="myText" name="PlayerName" placeholder="Type Your Name" style="width: 200px;"></input>
-							<br>
-							<input id="OptionButton" class="button" type="submit" value="Play Now"></input>
-						</div>
-						
-						<input id="radio0" type="radio" name="continent" value="North America">
-							<label id="NorthAmerica"  for="radio0" class="continentContainer">
-								<div class="continent">
-									<div class="header">North America</div>
-								</div>
-							</label>
-						</input>
-						
-						<input id="radio1" type="radio" name="continent" value="South America">
-							<label id="SouthAmerica"  for="radio1" class="continentContainer">
-								<div class="continent">
-									<div class="header">South America</div>
-								</div>
-							</label>
-						</input>
-						
-						<input id="radio2" type="radio" name="continent" value="Asia">
-							<label id="Asia"  for="radio2" class="continentContainer">
-								<div class="continent">
-									<div class="header">Asia</div>
-								</div>
-							</label>
-						</input>
-						
-						<input id="radio3" type="radio" name="continent" value="Africa">
-							<label id="Africa"  for="radio3" class="continentContainer">
-								<div class="continent"id="cont3">
-									<div class="header">Africa</div>
-								</div>
-							</label>
-						</input>
-					</form>
-				</div>	
-			</div>	
-		</div>
+    <div id="front">
+	<a href="play_game.html"><div class="button">Play Now</div></a>
 	</div>
-</body>
-</html>
+
+			
