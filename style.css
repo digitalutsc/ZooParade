@@ -5,8 +5,11 @@ Email: roleen.nunes@mail.utoronto.ca
 CSS for Zoo Parade Game
 */
 
+html{
+
+}
 body{
-	background-color: #F0DF86;
+	background-color: #448E51;
 }
 
 #leftMap{
@@ -41,14 +44,14 @@ body{
 	height: 25%;
 	color: white;
 	font-size: 3.5em;
-	font-family: font-family:"Times New Roman", Times, serif;
+	font-family:Georgia, "Times New Roman", Times, serif;
 
 }
 
 #zoo0{
 	width: 100%;
 	height: 35%;
-	background-color: green;
+	background-color: #387442;
 	margin-bottom: 3%;
 	border-radius: 1.5em;
 
@@ -57,16 +60,16 @@ body{
 #zoo1{
 	width: 100%;
 	height: 35%;
-	background-color: green;
+	background-color: #387442;
 	border-radius: 1.5em;
 }
 
 #messageBox{
-	background-color: #4A2500;
+	background-color: #3F3B1C;
 	width: 100%;
 	height: 30%;
 	border-radius: 2em;
-	font-family:"Times New Roman", Times, serif;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	color: #FFFF66;
 	overflow: hidden;
 }
@@ -79,7 +82,7 @@ body{
 }
 
 #rightMap{
-	background-color: #BABA4B;
+	background-color: #F0DF86;
 	width: 34%;
 	height: 65%;
 	margin: 0.86%;
@@ -88,7 +91,7 @@ body{
 }
 
 #question{
-	background-color: #4A2500;
+	background-color: #3F3B1C;
 	width: 32%;
 	height: 23%;
 	padding: 1%;
@@ -101,7 +104,7 @@ body{
 }
 
 #questionHeader{
-	font-family:"Times New Roman", Times, serif;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1.5em;
 }
@@ -109,7 +112,7 @@ body{
 #questionContent{
 	width: 90%;
 	height: 85%;
-	font-family:"Times New Roman", Times, serif;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1em;
 	overflow: auto;
@@ -128,7 +131,7 @@ body{
 }
 
 #answer{
-	background-color: #4A2500;
+	background-color: #3F3B1C;
 	width: 24%;
 	height: 23%;
 	padding-top: 1%;
@@ -143,7 +146,7 @@ body{
 }
 
 #answerHeader{
-	font-family: font-family:"Times New Roman", Times, serif;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1.5em;
 }
@@ -151,7 +154,7 @@ body{
 #answerContent{
 	width: 100%;
 	height: 85%;
-	font-family:"Times New Roman", Times, serif;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	color: #FFFF66;
 	font-size: 1em;
 	overflow: auto;
@@ -167,7 +170,7 @@ g.button:hover{
 }
 
 a {
-color: orange;
+color: #DB8130;
 }
 
 a:visited {
@@ -253,20 +256,20 @@ image:hover{
 	height:98%;
 	border: 3px solid #3F3B1C;
 	visibility: hidden;
-	background-color: #F0DF862;
+	background-color: #F0DF86;
 	
 }
 #story{
 	width: 100%;
 	height:97%;
 	border: none;
-	background-color: #F0DF862;
+	background-color: #F0DF86;
 	font-family:Georgia, "Times New Roman", Times, serif;
 }
 #storyClose{
 	right: 0px;
 	float: right;
-	background-color: #F0DF862;
+	background-color: #F0DF86;
 }
 .caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;
 }

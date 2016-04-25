@@ -57,7 +57,6 @@ h3{
 
 
 
-
 #interface{
 	height: 100%;
 }
@@ -88,7 +87,7 @@ a:link{
 }
 
 .button:hover{
-    color: orange;
+    color: #DB8130;
     cursor: pointer;
 }
 
