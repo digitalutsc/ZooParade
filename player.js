@@ -37,7 +37,8 @@ function Player(name, continent, map, checkpoints, capturePoints, right){
  * Parameter types : (Player, int)
  * Return type : Checkpoint
  */
-function GetNextCheckpoint(player, steps){
+function GetNextCheckpoint(player, steps)
+{
 	var moves = GetPossibleMoves(player.continent);
 	return moves[Math.floor(Math.random() * moves.length)];
 }
@@ -47,7 +48,8 @@ function GetNextCheckpoint(player, steps){
  * Parameter type: (Player, int)
  * Return type: list of list of Checkpoint
  */
-function GetPossiblePaths(player, steps){
+function GetPossiblePaths(player, steps)
+{
 	
 	var prev = Remove(player.currentCheckpoint.nextCheckpoints, player.visitedCheckpoints[player.visitedCheckpoints.length - 1]);
 	var allPaths = GetPaths([[player.currentCheckpoint]], steps);
@@ -61,28 +63,33 @@ function GetPossiblePaths(player, steps){
  * Parameter type: (list of list of Checkpoint, int)
  * Return type: list of list
  */
-function GetPaths(pathList, steps){
-
-	if (steps == 0){
+function GetPaths(pathList, steps)
+{
+	if (steps == 0)
+	{
 		return pathList;
 	}
 	var newPathList = new Array();
 	
-	for (var i = 0; i < pathList.length; i++){
+	for (var i = 0; i < pathList.length; i++)
+	{
 		var lastCp = pathList[i][pathList[i].length - 1];
 		var previousCp = null;
 
-		if (pathList[i].length > 1){
+		if (pathList[i].length > 1)
+		{
 			previousCp = Remove(lastCp.nextCheckpoints, pathList[i][pathList[i].length - 2]);
 		}
 
-		for (var j = 0; j < lastCp.nextCheckpoints.length; j++){
+		for (var j = 0; j < lastCp.nextCheckpoints.length; j++)
+		{
 			var path = pathList[i].slice();
 			path.push(lastCp.nextCheckpoints[j]);
 			newPathList.push(path);
 		}
 
-		if (previousCp != null){
+		if (previousCp != null)
+		{
 			lastCp.nextCheckpoints.push(previousCp);
 		}
 	}
@@ -93,7 +100,8 @@ function GetPaths(pathList, steps){
 /* Add the checkpoint to the visited checkpoints of the player 
  * Parameter types : (Player, Checkpoint)
  */
-function AddVisitedCheckpoint(player, checkpoint){
+function AddVisitedCheckpoint(player, checkpoint)
+{
 	player.visitedCheckpoints.push(checkpoint);
 }
 
@@ -190,6 +198,12 @@ function MovePlayer(player, checkpoint)
 					    		MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 2]);
 					    		totalAnimationTime = 0;								//Task #6123:  This variable must be set to 0 for Proceed() function.
 					    	}
+					    	// Task #6122:  Add rule that if you land on a capture point of an alternate animal that you should advance 2.
+					    	else if (player.currentCheckpoint.capture && !(player.currentCheckpoint.animal == player.currentAnimal))
+					    	{
+					    		player.steps = 2;
+					    		CorrectAnswerMove("This is not your animal, advance 2 spaces out of range.");
+					    	}
 						}, 
 						totalAnimationTime);
 
@@ -205,29 +219,31 @@ function MoveForward(player, checkpoint)
 	var yDeviation = GetMapHeight() * playerPlaceholderYDeviation;
 
 	var path;
-	if (player.possiblePaths != null){
-		for (var i = 0; i < player.possiblePaths.length; i++){
-
+	if (player.possiblePaths != null)
+	{
+		for (var i = 0; i < player.possiblePaths.length; i++)
+		{
 			DeselectCheckpoint(player.possiblePaths[i][player.possiblePaths[i].length - 1]);
 			if (player.possiblePaths[i][player.possiblePaths[i].length - 1] == checkpoint) path = player.possiblePaths[i];
 		}
 	}
 
-	if (player.steps > 1){
-		
+	if (player.steps > 1)
+	{	
 		var totalDistance = 0;
 		var distances = new Array();
-		for (var i = 0; i < path.length - 1; i++){
+		for (var i = 0; i < path.length - 1; i++)
+		{
 			var distance = Math.pow(Math.pow(path[i].x - path[i+1].x, 2) + Math.pow(path[i].y - path[i+1].y, 2), 0.5);
 			totalDistance += distance;
 			distances.push(distance);
 		}
-		
+
 		totalAnimationTime = totalDistance / GetMapWidth() * playerMoveSpeed;
 		MovePlayerAnimation(player, path, totalDistance, distances, xDeviation, yDeviation, true);
-
-	} else {
-
+	} 
+	else
+	{
 		totalAnimationTime = 150;
 		player.placeHolder.animate(150).move(checkpoint.x + xDeviation, checkpoint.y + yDeviation);
 	}
@@ -275,26 +291,32 @@ function MoveBackwards(player, checkpoint)
 /* Animates Player placeholder's movement along the path 
  * Parameter types: (Player, list of Checkpoint, float, float, float, float, float, boolean)
  */
-function MovePlayerAnimation(player, path, totalDistance, distances, xDeviation, yDeviation, forward){
+function MovePlayerAnimation(player, path, totalDistance, distances, xDeviation, yDeviation, forward)
+{
 	var i = 1;
 	var animationTime = (distances[i] / totalDistance) * totalAnimationTime;
 
 	player.placeHolder.animate(animationTime).move(path[i].x + xDeviation, path[i].y + yDeviation);
 	i++;
 
-	function animationLoop () {
+	function animationLoop () 
+	{
 		animationTime = (distances[i - 1] / totalDistance) * totalAnimationTime;
-		setTimeout(function () {
-			if (i < path.length) {
-				if (forward){
-					VisitCheckpoint(player, path[i - 1], true);
-					AddVisitedCheckpoint(player, path[i - 1]);
-				}
-				player.placeHolder.animate(animationTime).move(path[i].x + xDeviation, path[i].y + yDeviation);
-				i++;
-				animationLoop();
-			}
-		}, animationTime);
+		setTimeout(function () 
+							{
+								if (i < path.length) 
+								{
+									if (forward)
+									{
+										VisitCheckpoint(player, path[i - 1], true);
+										AddVisitedCheckpoint(player, path[i - 1]);
+									}
+									player.placeHolder.animate(animationTime).move(path[i].x + xDeviation, path[i].y + yDeviation);
+									i++;
+									animationLoop();
+								}
+							}, 
+							animationTime);
 	}
 	animationLoop();
 }

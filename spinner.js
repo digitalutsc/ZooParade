@@ -8,8 +8,8 @@ var pin;
 var spinnerBoard;
 
 /* Creates the Spinner object */
-function CreateSpinner(){
-
+function CreateSpinner()
+{
 	var theGuy = SVG('theGuy');
 	var image = theGuy.image('Resources/theGuy.png', GetPanelHeight() * 0.8, GetPanelHeight() * 0.8);
 	image.cx(GetMiddleWidth() * 0.47);
@@ -35,7 +35,8 @@ function CreateSpinner(){
 }
 
 /* Creates the spin button for the spinner */
-function CreateSpinButton(){
+function CreateSpinButton()
+{
 	var buttonWidth = GetPanelHeight() * spinButtonWidthScale;
 	var buttonHeight = GetPanelHeight() * spinButtonHeightScale;
 
@@ -59,7 +60,8 @@ function CreateSpinButton(){
 
 
 /* Spins the Spinner pin */
-function Spin(){
+function Spin()
+{
 	var right = game.right;
 	var player = game.player0;
 	if (right) player = game.player1;
@@ -79,16 +81,21 @@ function Spin(){
 		if (player.currentCheckpoint.redS) player.steps = redNumbers[index];
 		player.spin = false;
 
-		setTimeout(function(){
-			var paths = GetPossiblePaths(player, player.steps);
-			player.possiblePaths = paths;
-			for(var i = 0; i < paths.length; i++){
-				var path = paths[i];
-				SelectCheckpoint(path[path.length - 1]);
-				AddMessage("Click on one of the highlighted checkpoints to move player");
-			}
-		}, spinnerAnimationTime);
-	} else {
+		setTimeout(function()
+							{
+								var paths = GetPossiblePaths(player, player.steps);
+								player.possiblePaths = paths;
+								for(var i = 0; i < paths.length; i++)
+								{
+									var path = paths[i];
+									SelectCheckpoint(path[path.length - 1]);
+									AddMessage("Click on one of the highlighted checkpoints to move player");
+								}
+							}, 
+							spinnerAnimationTime);
+	} 
+	else
+	{
 		AddMessage("You can use the spinner only at a Spin checkpoint");
 	}	
 }
@@ -96,14 +103,16 @@ function Spin(){
 /* Returns the coordinates of the center of the spinner image
  * Return type: dictionary
  */
-function GetSpinnerBoardCenter(){
+function GetSpinnerBoardCenter()
+{
 	return ({'x': spinnerBoard.cx(), 'y': spinnerBoard.cy()});
 }
 
 /* Returns the coordinates of the center of the pin image
  * Return type: dictionary
  */
-function GetPinCenter(){
+function GetPinCenter()
+{
 	var center = GetSpinnerBoardCenter();
 	return ({'x': center.x + GetPanelHeight() * pinCenterXScale, 'y': center.y + GetPanelHeight() * pinCenterYScale});
 }
@@ -111,12 +120,14 @@ function GetPinCenter(){
 /* Returns the position coordinates of the position of the spin button
  * Return type: dictionary
  */
-function GetButtonPosition(){
+function GetButtonPosition()
+{
 	return ({'x': GetPanelHeight() * spinButtonXScale, 'y': GetPanelHeight() * spinButtonYScale});
 }
 
 /* Fixes the position of the spinner board */
-function FixSpinnerBoardPosition(){
+function FixSpinnerBoardPosition()
+{
 	var x = spinnerBoard.cx() + GetPanelHeight() * spinnerBoardXScale;
 	var y = spinnerBoard.cy() + GetPanelHeight() * spinnerBoardYScale;
 	spinnerBoard.cx(x);

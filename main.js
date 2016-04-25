@@ -308,7 +308,7 @@ function WrongAnswerMove(responseText = "")
 
 		if (!player.move1 && !player.move2 && !player.move3 && !player.captured)
 		{
-			player.steps = -1;
+			player.steps = qAPair.wrongSteps;														// Task #6122
 			MovePlayer(player, player.visitedCheckpoints[player.visitedCheckpoints.length - 1]);
 		}
 	}
@@ -455,9 +455,11 @@ function FixBodySize(){
  * Parameter types: (list of object, object)
  * Return type: object
  */
-function Remove(list, element){
+function Remove(list, element)
+{
 	var index = list.indexOf(element);
-	if (index > -1){
+	if (index > -1)
+	{
 		list.splice(index, 1);
 	}
 	return element;

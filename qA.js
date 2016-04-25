@@ -55,10 +55,12 @@ function ProcessCSV(results, right)
 
 		// Feature #6029:  Changed processing to include response text as displayed on the number dial in the physical game.
 		// Feature #6088:  Changed processing to include story intro text and the zoo story name
+		// Task #6122:  Changed processing to include the number of steps that a wrong answer penalises the player.
 		if (row[binaryIndex] != "" && row[typeIndex] != "" && row[questionIndex] != "" && (row[choicesIndex] != "" || row[correctIndex] != "") && (row[rightResponseIndex] != "" || row[wrongResponseIndex] != ""))
 		{
 			var question = row[questionIndex];
 			var answer = "<br/>";
+			var wrongSteps = 0;
 
 			// Task #6076:  Added fields to allow ai module to access more information about the question and its answer.  Also remove onclick events for AI.
 			var multiChoice = false;
@@ -86,6 +88,12 @@ function ProcessCSV(results, right)
 					else
 						answer = '<center> <div id="yesButton">Yes</div><div id="noButton">No</div> </center>';
 				}
+				
+				// Task #6122:  Adding step penalties
+				if (/1/.test(row[wrongResponseIndex]))
+					wrongSteps = -1;
+				else if (/2/.test(row[wrongResponseIndex]))
+					wrongSteps = -2;
 			} 
 			else
 			{
@@ -111,6 +119,9 @@ function ProcessCSV(results, right)
 					else
 						answer += '<div id="mcq' + j + '" class="mcqOptionAI" cursor="pointer"><center>' + label + '</center></div><br/>';
 
+					// Task #6122:  Adding step penalties; they are only relevant during failed capture (opening question is 1/0, transport is 0/0 advance/penalty properly dealt with by program already)
+					if (choices.length == 2)
+						wrongSteps = -2;
 				}
 			}
 
@@ -120,13 +131,12 @@ function ProcessCSV(results, right)
 				info = "<br>" + row[infoIndex] + "<br><br><a href=\"#\" onClick=\"ShowZooStoryPopup(true,'" + row[zooStoryIndex] + "'); return false;\">" + row[zooStoryLinkTextIndex] + "</a>";
 			}
 
-			var questionObject = new Question(question, answer, info, multiChoice, answerButtonID);
+			var questionObject = new Question(question, answer, info, multiChoice, answerButtonID, wrongSteps);
 
 			if (row[typeIndex] == startQuestion) 
 				playerQuestionSet.start.push(questionObject);
 			else if (row[typeIndex] == onTrailQuestion) 
 				playerQuestionSet.onTrail.push(questionObject);
-				// add logic for footprint question
 			else if (row[typeIndex] == captureQuestion) 
 				playerQuestionSet.capture.push(questionObject);
 			else if (row[typeIndex] == transportQuestion) 

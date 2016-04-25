@@ -63,8 +63,8 @@ function CreateMapCheckpoints(game, map, checkpointsList, right)
 /* Creates a single checkpoint 
  * Parameter types: (Game, SVG, Checkpoint, float)
  */
-function CreateMapCheckpoint(game, map, checkpoint, cpSize){
-
+function CreateMapCheckpoint(game, map, checkpoint, cpSize)
+{
 	checkpoint.circle = map.circle(cpSize).attr({ cx: checkpoint.x, cy: checkpoint.y });
 	game.svgObjects.push(checkpoint.circle);
 	
@@ -84,12 +84,13 @@ function CreateMapCheckpoint(game, map, checkpoint, cpSize){
 /* Links all the checkpoints in the given path based on the edges for the given map
  * Parameter types: (Game, boolean)
  */
-function LinkCheckpoints(game, path, right){
-
+function LinkCheckpoints(game, path, right)
+{
 	var checkpointsList = game.leftCheckpoints;
 	if (right) checkpointsList = game.rightCheckpoints;
 
-	for (var i = 0; i < pathEdges.length; i++){
+	for (var i = 0; i < pathEdges.length; i++)
+	{
 		index1 = pathEdges[i][0];
 		index2 = pathEdges[i][1];
 
@@ -98,9 +99,17 @@ function LinkCheckpoints(game, path, right){
 		var line = path.line(checkpointsList[index1].x, checkpointsList[index1].y, checkpointsList[index2].x, 
 		checkpointsList[index2].y).stroke({ width: eWidth, color: checkpointColor });
 
-		if (!game.created){
+		if (!game.created)
+		{
 			checkpointsList[index1].nextCheckpoints.push(checkpointsList[index2]);
 			checkpointsList[index2].nextCheckpoints.push(checkpointsList[index1]);
+
+			// Task #6122:  Remove link back between checkpoints 2 and 1 (2 is the first red spinner) so that path cannot be re-entered.
+			// This should act as a one way link to get on the trail, but not off of it.
+			if (i == 1)
+			{
+				checkpointsList[index2].nextCheckpoints.pop();
+			}
 		}
 		game.svgObjects.push(line);
 	}
@@ -127,7 +136,8 @@ function RemoveCapturePoint(map, checkpoint){
 /* Selects the given checkpoint 
  * Parameter types: (Checkpoint) 
  */
-function SelectCheckpoint(checkpoint){
+function SelectCheckpoint(checkpoint)
+{
 	checkpoint.clickCircle.attr({ id: 'P' + checkpoint.index.toString()});
 	checkpoint.clickCircle.attr({ fill: 'white', opacity: 0.4 });
 	checkpoint.selected = true;
@@ -146,16 +156,18 @@ function DeselectCheckpoint(checkpoint){
 /* Sets the onclick function for the given checkpoint 
  * Parameter types: (Checkpoint)
  */
-function SetCheckpointClick(checkpoint){
-	checkpoint.clickCircle.click(function(){
-		if (!(ai && game.right)) SelectedCheckpointClickFunction(checkpoint);
-	});
+function SetCheckpointClick(checkpoint)
+{
+	checkpoint.clickCircle.click(function()
+										{
+											if (!(ai && game.right)) SelectedCheckpointClickFunction(checkpoint);
+										});
 }
 
-function SelectedCheckpointClickFunction(checkpoint){
-	
-	if (checkpoint.selected && checkpoint.right == game.right) {
-		
+function SelectedCheckpointClickFunction(checkpoint)
+{	
+	if (checkpoint.selected && checkpoint.right == game.right) 
+	{	
 		var player = game.player0;
 		if (game.right) player = game.player1;
 
@@ -163,19 +175,21 @@ function SelectedCheckpointClickFunction(checkpoint){
 		if (game.right) nextPlayer = game.player0;
 
 		var spinnerPoint = player.currentCheckpoint.redS || player.currentCheckpoint.greenS;
-
 		MovePlayer(player, checkpoint);
-
-		setTimeout(function(){
-			totalAnimationTime = 0;
-			if (spinnerPoint) {
-				Proceed();
-				var message = nextPlayer.name + "'s turn";
-				if (nextPlayer.spin) message += "<br/>Please spin the Spinner by clicking 'Spin'";
-				if (!game.gameOver) AddMessage(message);
-			}
-			else AddInfoText();
-		}, totalAnimationTime);
+		setTimeout(function()
+							{
+								totalAnimationTime = 0;
+								if (spinnerPoint) 
+								{
+									Proceed();
+									var message = nextPlayer.name + "'s turn";
+									if (nextPlayer.spin) message += '<br/>Please spin the Spinner by clicking the "SPIN" button.';
+									if (!game.gameOver) AddMessage(message);
+								}
+								else 
+									AddInfoText();
+							},
+							totalAnimationTime);
 	}
 }
 
