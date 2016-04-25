@@ -5,17 +5,18 @@ body{
 	margin-left: 0px;
 /*	min-height: 1000px;
 	min-width: 1800px;*/
-	background-color: #ffffff;
+	background-color: #448E51;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	opacity: .7%;
+	
 }
 
 #information{
-	height: 30%;
-	background-color: #ffffff;
-	color: #010101;
-	padding-left: 150px;
-	padding-right: 150px;
+	height: 40%;
+	background-color: #F0DF86;
+	color: #3F3B1C;
+	padding-left: 50px;
+	padding-right: 50px;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size: 1.25em;
 	overflow-y: auto;
@@ -24,20 +25,37 @@ body{
 
 
 
-#front, #back{
+#front
+{
 	height:100%;
 	width: 100%;
 	border-left: 100px;
 	border-right: 100px;
 	backface-visibility: hidden;
+	
 }
 
-#front{
-	position:relative;
-	background-image: url("Resources/Small_Cover_Image.png");
-	background-repeat: no-repeat;
-	background-position: center; 
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	padding-top:20px; }
+	
+h3{
+	text-align:center;
 }
+
+
+#back{
+	height:100%;
+	width: 100%;
+	border-left: 100px;
+	border-right: 100px;
+	backface-visibility: hidden;
+	
+}
+
+
 
 
 #interface{
@@ -45,7 +63,8 @@ body{
 }
 
 a:link{
-	text-decoration: none;
+	text-decoration:!important;
+	color:#3287BF;
 }
 
 #TextBox{
@@ -64,6 +83,7 @@ a:link{
 	background: #4A2500;
 	color: #FFFF66;
 	text-decoration: none;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	margin-top:1%;
 }
 
@@ -120,7 +140,7 @@ input[type=radio] {
 }
 
 input[type="radio"]:checked + label {
-    background-color: green;
+    background-color: #F0DF86;
 }
 
 .continent{
@@ -144,9 +164,9 @@ input[type="radio"]:checked + label {
 
 .continentContainer:hover{
 	cursor: pointer;
-	background-color: green;
+	background-color: #DB8130;
 	border-radius: 2em;
-	color: white;
+	color: #4A2500;
 }
 
 .header{
@@ -156,6 +176,7 @@ input[type="radio"]:checked + label {
 	height: 10%;
 	text-align: center;
 	font-weight: bold;
+	padding-top:20px;
 }
 
 .tryitbtn{

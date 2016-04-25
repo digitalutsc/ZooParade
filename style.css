@@ -6,7 +6,7 @@ CSS for Zoo Parade Game
 */
 
 body{
-	background-color: #8DE670;
+	background-color: #448E51;
 }
 
 #leftMap{
@@ -251,8 +251,9 @@ image:hover{
 	right:3px;
 	width: 50%;
 	height:98%;
-	border: 3px solid #4A2500;
-	background-color: #F8ECC2;
+	border: 3px solid #3F3B1C;
+	background-color: #F0DF86;
+	font-family:Georgia, "Times New Roman", Times, serif;
 	visibility: hidden;
 	
 }
@@ -266,7 +267,7 @@ image:hover{
 	right: 0px;
 	float: right;
 }
-.caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-style:italic; background-color: #F8ECC2;
+.caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;
 }
 
 
