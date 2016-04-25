@@ -252,8 +252,6 @@ image:hover{
 	width: 50%;
 	height:98%;
 	border: 3px solid #3F3B1C;
-	background-color: #F0DF86;
-	font-family:Georgia, "Times New Roman", Times, serif;
 	visibility: hidden;
 	
 }
@@ -261,7 +259,9 @@ image:hover{
 	width: 100%;
 	height:97%;
 	border: none;
-	background-color: #F8ECC2;
+	background-color: #F0DF862;
+	background-color: #F0DF86;
+	font-family:Georgia, "Times New Roman", Times, serif;
 }
 #storyClose{
 	right: 0px;
@@ -269,5 +269,6 @@ image:hover{
 }
 .caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;
 }
+
 
 
