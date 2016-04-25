@@ -253,6 +253,7 @@ image:hover{
 	height:98%;
 	border: 3px solid #3F3B1C;
 	visibility: hidden;
+	background-color: #F0DF862;
 	
 }
 #story{
@@ -260,12 +261,12 @@ image:hover{
 	height:97%;
 	border: none;
 	background-color: #F0DF862;
-	background-color: #F0DF86;
 	font-family:Georgia, "Times New Roman", Times, serif;
 }
 #storyClose{
 	right: 0px;
 	float: right;
+	background-color: #F0DF862;
 }
 .caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;
 }
