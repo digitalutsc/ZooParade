@@ -265,6 +265,7 @@ image:hover{
 	border: none;
 	background-color: #F0DF86;
 	font-family:Georgia, "Times New Roman", Times, serif;
+	padding: 5%;
 }
 #storyClose{
 	right: 0px;
