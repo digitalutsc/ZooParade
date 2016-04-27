@@ -265,7 +265,6 @@ image:hover{
 	border: none;
 	background-color: #F0DF86;/*light beige*/
 	font-family:Georgia, "Times New Roman", Times, serif;
-	/*padding: 5%;  REMOVED --> causing scroll bars */
 }
 
 #storyBody{
@@ -281,6 +280,7 @@ image:hover{
 .caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;
 }
 
+/* Task #6130:  added div to contain info button */
 #infoDiv{
 	position: absolute;
 	right:5px;

@@ -24,6 +24,9 @@ function Game()
 	// Feature #6029:  SVG object in order to render footprint images
 	this.footprints = SVG('footprints');
 
+	// Task #6130:  SVG object for the info button.
+	this.infoButton = SVG('infoButton');
+
 	// SVG objects for the zoo sections
 	this.zoo0 = SVG('zoo0');
 	this.zoo1 = SVG('zoo1');
@@ -135,8 +138,8 @@ function Setup(game)
 	// Display any message to be displayed in message board
 	AddMessage(game.currentMessage);
 
-	// Task 6088:  Adjust iframe
-	//AdjustZooStoriesIFrame();
+	// Task #6130  Draw the information button and enable functionality.
+	AddInfoButton();
 
 	game.created = true;
 }
@@ -194,4 +197,46 @@ function LinkContinentAnimals(animals, right)
 	var continent = game.continent0;
 	if (right) continent = game.continent1;
 	for (var i = 0; i < animals.length; i++) animals[i].continent = continent;
+}
+
+/* Task #6130
+*  Add info button to game board and open instructions when clicked.
+*/
+function AddInfoButton()
+{
+
+	// create info button base
+	var infoDiv = document.getElementById("infoDiv");
+	var circleHeight = infoDiv.offsetHeight - 4;
+	var circleX = infoDiv.offsetWidth-circleHeight/2-2;
+	var circleY = circleHeight/2 + 1;
+	var circleNew = game.infoButton.circle(circleHeight).attr({cx: circleX, cy: circleY, fill: '#FFFF66', 'stroke-width': GetMapWidth() * 0.005});
+	game.svgObjects.push(circleNew);
+
+	// add the letter "i"
+	var iLetter = game.infoButton.text('i');
+	iLetter.font({family: "Georgia", size: circleHeight, fill: "black", anchor: "middle", 'stroke-width': GetMapWidth() * 0.005});
+	iLetter.move(circleX, circleHeight * (-0.05));
+	game.svgObjects.push(iLetter);
+
+	// add an invisible circle over top that can be clicked.
+	var clickCircle = game.infoButton.circle(circleHeight).attr({cx: circleX, cy: circleY, opacity: 0});
+	game.svgObjects.push(clickCircle);
+
+	// determine the size of the popup window
+	var windowWidth = "66%";
+	var windowHeight = "70%"
+	var windowLeft = window.screen.width / 6;
+	var windowTop = window.screen.height / 8;
+	var windowFeatures = "left=" + windowLeft + ",top=" + windowTop + ",width=" + windowWidth + ",height=" + windowHeight + ",menubar=no,scrollbars=yes";
+
+	// and click circle functionality
+	clickCircle.click(function()
+						{
+							window.open('Resources/Instructions.html', 'Zoo Parade Instructions', windowFeatures);
+						});
+	clickCircle.mouseover(function()
+						{
+							clickCircle.style({cursor: 'pointer'});
+						})
 }

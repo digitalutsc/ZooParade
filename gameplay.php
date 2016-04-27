@@ -69,6 +69,12 @@ Zoo Parade Game
 			<div id="answerContent"></div>
 		</center>
 	</div>
+	
+	<!-- Task #6130:  Add an info button that will open the instructions in a separate window -->
+	<div id="infoDiv">
+		<svg id="infoButton"></svg>
+	</div>
+	
 	<!-- Issue #6088 added iframe to show zoo stories -->
 	<div id="storyPopup">
 		<input id="storyClose" type="button" onClick="ShowZooStoryPopup(false,'');" value="X"></input>
