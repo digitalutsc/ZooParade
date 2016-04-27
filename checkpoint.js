@@ -77,8 +77,10 @@ function CreateMapCheckpoint(game, map, checkpoint, cpSize)
 	SetCheckpointClickCircleId(checkpoint);
 
 	SetCheckpointClick(checkpoint);
-	SetCheckpointMouseover(checkpoint);
-	SetCheckpointMouseout(checkpoint);
+
+	// Task #6032:  Remove checkpoint highlight on non-events
+	//SetCheckpointMouseover(checkpoint);
+	//SetCheckpointMouseout(checkpoint);
 }
 
 /* Links all the checkpoints in the given path based on the edges for the given map
