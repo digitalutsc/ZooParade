@@ -9,11 +9,11 @@ html{
 
 }
 body{
-	background-color: #448E51;
+	background-color: #5EC471;/*light green*/
 }
 
 #leftMap{
-	background-color: #FFFF66;
+	background-color: #FFFF66; /*light yellow*/
 	width: 34%;
 	height: 65%;
 	margin: 0.86%;
@@ -51,7 +51,7 @@ body{
 #zoo0{
 	width: 100%;
 	height: 35%;
-	background-color: #387442;
+	background-color: #448E51;/*darker green*/
 	margin-bottom: 3%;
 	border-radius: 1.5em;
 
@@ -60,17 +60,17 @@ body{
 #zoo1{
 	width: 100%;
 	height: 35%;
-	background-color: #387442;
+	background-color: #448E51;/*darker green*/
 	border-radius: 1.5em;
 }
 
 #messageBox{
-	background-color: #3F3B1C;
+	background-color: #4A2500;/*warm brown*/
 	width: 100%;
 	height: 30%;
 	border-radius: 2em;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color: #FFFF66;
+	color: #FFFF66;/*light yellow*/
 	overflow: hidden;
 }
 
@@ -82,7 +82,7 @@ body{
 }
 
 #rightMap{
-	background-color: #F0DF86;
+	background-color: #F0DF86;/*light beige*/
 	width: 34%;
 	height: 65%;
 	margin: 0.86%;
@@ -91,7 +91,7 @@ body{
 }
 
 #question{
-	background-color: #3F3B1C;
+	background-color: #4A2500;/*warm brown*/
 	width: 32%;
 	height: 23%;
 	padding: 1%;
@@ -105,7 +105,7 @@ body{
 
 #questionHeader{
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color: #FFFF66;
+	color: #FFFF66;/*light yellow*/
 	font-size: 1.5em;
 }
 
@@ -113,13 +113,13 @@ body{
 	width: 90%;
 	height: 85%;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color: #FFFF66;
+	color: #FFFF66;/*light yellow*/
 	font-size: 1em;
 	overflow: auto;
 }
 
 #spinnerSection{
-	background-color: #FFFF66;
+	background-color: #FFFF66;/*light yellow*/
 	width: 25%;
 	height: 27%;
 	margin-left: 0.86%;
@@ -131,7 +131,7 @@ body{
 }
 
 #answer{
-	background-color: #3F3B1C;
+	background-color: #4A2500;/*warm brown*/
 	width: 24%;
 	height: 23%;
 	padding-top: 1%;
@@ -147,7 +147,7 @@ body{
 
 #answerHeader{
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color: #FFFF66;
+	color: #FFFF66;/*light yellow*/
 	font-size: 1.5em;
 }
 
@@ -155,32 +155,32 @@ body{
 	width: 100%;
 	height: 85%;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color: #FFFF66;
+	color: #FFFF66;/*light yellow*/
 	font-size: 1em;
 	overflow: auto;
 }
 
 g.button{
-	fill: #FFFF66;
+	fill: #FFFF66;/*light yellow*/
 	pointer-events: all;
 }
 
 g.button:hover{
-    fill: green;
+    fill: #5EC471;/*light green*/
 }
 
 a {
-color: #DB8130;
+color: #DB8130;/*orange*/
 }
 
 a:visited {
-color: #005C1F;
+color: #5EC471;/*light green*/
 }
 
 /* Task #6076:  added mcqOptionAI to prevent inversion of AI multichoice buttons by user click. */
 .mcqOption, .mcqOptionAI{
-	background-color: #FFFF66;
-	color: #4A2500;
+	background-color: #FFFF66;/*light yellow*/
+	color: #4A2500;/*warm brown*/
 	font-family:"Times New Roman", Times, serif;
 	border-radius: 2em;
 	font-size: 1.5em;
@@ -188,20 +188,20 @@ color: #005C1F;
 
 .mcqOption:hover{
 	cursor: pointer;
-	color: green;
+	color:  #5EC471;/*light green*/;
 }
 
 /*Task #6076 Invert colours when clicking buttons.  */
 .mcqOption:active{
-	background-color: #4A2500;
-	color: #FFFF66;
-	border: 1px solid #FFFF66;
+	background-color: #4A2500;/*warm brown*/
+	color: #FFFF66;/*light yellow*/
+	border: 1px solid #FFFF66;/*light yellow*/
 
 }
 
 #yesButton, #noButton, #proceedButton/*, .buttonAI*/{
-	background: #FFFF66;
-	color: #4A2500;
+	background: #FFFF66;/*light yellow*/
+	color: #4A2500;/*warm brown*/
 	vertical-align: middle;
 }
 
@@ -213,14 +213,14 @@ color: #005C1F;
 
 #yesButton:hover, #noButton:hover, #proceedButton:hover{
 	cursor: pointer;
-	color: green;
+	color: #5EC471;/*light green*/
 }
 
 /*Task #6076 Invert colours when clicking buttons.  */
 #yesButton:active, #noButton:active, #proceedButton:active{
-	background-color: #4A2500;
-	color: #FFFF66;
-	border: 1px solid #FFFF66;
+	background-color: #4A2500;/*warm brown*/
+	color: #FFFF66;/*light yellow*/
+	border: 1px solid #FFFF66;/*light yellow*/
 }
 
 
@@ -254,28 +254,28 @@ image:hover{
 	right:3px;
 	width: 50%;
 	height:98%;
-	border: 3px solid #3F3B1C;
+	border: 3px solid #4A2500;/*warm brown*/
 	visibility: hidden;
-	background-color: #F0DF86;
+	background-color: #F0DF86;/*light beige*/
 }
 
 #story{
 	width: 100%;
 	height:97%;
 	border: none;
-	background-color: #F0DF86;
+	background-color: #F0DF86;/*light beige*/
 	font-family:Georgia, "Times New Roman", Times, serif;
 	/*padding: 5%;  REMOVED --> causing scroll bars */
 }
 
 #storyBody{
-	background-color: #F0DF86;
+	background-color: #F0DF86;/*light beige*/
 }
 
 #storyClose{
 	right: 0px;
 	float: right;
-	background-color: #F0DF86;
+	background-color: #F0DF86;/*light beige*/
 }
 
 .caption{caption-side:bottom; width:410px; text-align:center; margin: 5px; font-family:Georgia, "Times New Roman", Times, serif; font-style:italic;

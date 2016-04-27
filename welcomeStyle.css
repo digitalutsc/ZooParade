@@ -5,7 +5,7 @@ body{
 	margin-left: 0px;
 /*	min-height: 1000px;
 	min-width: 1800px;*/
-	background-color: #448E51;
+	background-color: #5EC471;/*light green*/
 	font-family: Georgia, "Times New Roman", Times, serif;
 	opacity: .7%;
 	
@@ -13,14 +13,16 @@ body{
 
 #information{
 	height: 300px;
-	background-color: #F0DF86;
-	color: #3F3B1C;
+	background-color: #F0DF86;/*light beige*/
+	color: #4A2500;/*warm brown*/
 	padding-left: 50px;
 	padding-right: 50px;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size: 1.25em;
 	overflow-y: auto;
-	line-height: 120%
+	line-height: 120%;
+	border-radius: 4em;
+	
 }
 
 
@@ -63,7 +65,7 @@ h3{
 
 a:link{
 	text-decoration:!important;
-	color:#3287BF;
+	color:#E37100;/*orange*/
 }
 
 #TextBox{
@@ -79,15 +81,15 @@ a:link{
 	width: 30%;
 	padding: .5%;
 	border-radius: 1em;
-	background: #4A2500;
-	color: #FFFF66;
+	background: #4A2500;/*warm brown*/
+	color: #FFFF66;/*light yellow*/
 	text-decoration: none;
 	font-family:Georgia, "Times New Roman", Times, serif;
 	margin-top:1%;
 }
 
 .button:hover{
-    color: #DB8130;
+    color: #E37100;/*orange*/
     cursor: pointer;
 }
 
@@ -139,7 +141,7 @@ input[type=radio] {
 }
 
 input[type="radio"]:checked + label {
-    background-color: #F0DF86;
+    background-color: #E37100;/*orange*/ 
 }
 
 .continent{
@@ -155,7 +157,7 @@ input[type="radio"]:checked + label {
 	width: 19%;
 	height: 90%;
 	float: left;
-	background-color: #FFFF66;
+	background-color: #FFFF66;/*light yellow*/
 	border-radius: 2em;
 	margin-right: .5%;
 	margin-left: .5%;
@@ -163,14 +165,14 @@ input[type="radio"]:checked + label {
 
 .continentContainer:hover{
 	cursor: pointer;
-	background-color: #DB8130;
+	background-color: #F0DF86;/*light beige*/
 	border-radius: 2em;
 	color: #4A2500;
 }
 
 .header{
 	border-radius: 2em;
-	color: #4A2500;
+	color: #4A2500;/*warm brown*/
 	font-size: 2em;
 	height: 10%;
 	text-align: center;
