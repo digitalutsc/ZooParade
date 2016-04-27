@@ -233,7 +233,7 @@ function AddInfoButton()
 	// and click circle functionality
 	clickCircle.click(function()
 						{
-							window.open('Resources/Instructions.html', 'Zoo Parade Instructions', windowFeatures);
+							window.open('./Resources/Instructions.html', 'Zoo Parade Instructions', windowFeatures);
 						});
 	clickCircle.mouseover(function()
 						{
