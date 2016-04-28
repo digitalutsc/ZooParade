@@ -93,6 +93,7 @@ function PositionAnimal(game, animal, path, checkpointsList, checkpointIndex, xD
 	var image = path.image(animal.svgPath, GetMapWidth() * mapScale, GetMapHeight() * mapScale);
 	image.cx(checkpointsList[checkpointIndex].x + GetMapWidth() * xDeviation * sign);
 	image.cy(checkpointsList[checkpointIndex].y + GetMapHeight() * yDeviation);
+	image.style({cursor: 'default'});			// Task #6134:  Cursor should not indicate the image is clickable (because it isn't).
 	game.svgObjects.push(image);
 
 	animal.svg[checkpointIndex] = image;

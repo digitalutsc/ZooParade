@@ -14,6 +14,7 @@ function CreateSpinner()
 	var image = theGuy.image('Resources/theGuy.png', GetPanelHeight() * 0.8, GetPanelHeight() * 0.8);
 	image.cx(GetMiddleWidth() * 0.47);
 	image.cy(GetPanelHeight() * 0.46);
+	image.style({cursor: 'default'});
 	game.svgObjects.push(image);
 
 	spinnerBoard = game.spinner.image('Resources/spinner.png', GetPanelHeight() * spinnerBoardWidthScale, 
