@@ -141,14 +141,15 @@ function RemoveCapturePoint(map, checkpoint){
 function SelectCheckpoint(checkpoint)
 {
 	checkpoint.clickCircle.attr({ id: 'P' + checkpoint.index.toString()});
-	checkpoint.clickCircle.attr({ fill: 'white', opacity: 0.4 });
+	checkpoint.clickCircle.attr({ fill: 'magenta', opacity: 0.65 });
 	checkpoint.selected = true;
 }
 
 /* Deselects the given checkpoint
  * Parameter types: (Checkpoint)
  */
-function DeselectCheckpoint(checkpoint){
+function DeselectCheckpoint(checkpoint)
+{
 	checkpoint.clickCircle.attr({ fill: 'black', opacity: 0 });
 	SetCheckpointColor(checkpoint);
 	SetCheckpointClickCircleId(checkpoint);
@@ -198,29 +199,35 @@ function SelectedCheckpointClickFunction(checkpoint)
 /* Sets the on mouseover function for the given checkpoint 
  * Parameter types: (Checkpoint)
  */
-function SetCheckpointMouseover(checkpoint){
-	checkpoint.clickCircle.mouseover(function(){
-		var id = this.attr('id');
-		var type = id.slice(0, 1);
-		var index = parseInt(id.slice(1));
-		if (type == 'N' || type == 'R' || type == 'H'){
-			checkpoint.clickCircle.attr('opacity', 0.4);
-		} 
-	});
+function SetCheckpointMouseover(checkpoint)
+{
+	checkpoint.clickCircle.mouseover(function()
+										{
+											var id = this.attr('id');
+											var type = id.slice(0, 1);
+											var index = parseInt(id.slice(1));
+											if (type == 'N' || type == 'R' || type == 'H')
+											{
+												checkpoint.clickCircle.attr({fill: 'black', opacity: 0.4});
+											} 
+										});
 }
 
 /* Sets the on mouseout function for the given checkpoint 
  * Parameter types: (Checkpoint)
  */
-function SetCheckpointMouseout(checkpoint){
-	checkpoint.clickCircle.mouseout(function(){
-		var id = this.attr('id');
-		var type = id.slice(0, 1);
-		var index = parseInt(id.slice(1));
-		if (type == 'N' || type == 'R' || type == 'H'){
 			checkpoint.clickCircle.attr('opacity', 0);
-		} 
-	});
+function SetCheckpointMouseout(checkpoint)
+{
+	checkpoint.clickCircle.mouseout(function()
+										{
+											var id = this.attr('id');
+											var type = id.slice(0, 1);
+											var index = parseInt(id.slice(1));
+											if (type == 'N' || type == 'R' || type == 'H')
+											{
+											} 
+										});
 }
 
 /* Sets the colour of the given checkpoint

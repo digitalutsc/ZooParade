@@ -156,6 +156,7 @@ function AddPlayerPlaceHolder(game, right){
 							GetMapHeight() * mapScale * playerPlaceHolderScale);
 	player.placeHolder.cx(position.x + GetMapWidth() * playerPlaceHolderXScale * sign);
 	player.placeHolder.cy(position.y + GetMapHeight() * playerPlaceHolderYScale);
+	player.placeHolder.style({cursor: 'default'});			// Task #6134:  Cursor should not indicate the image is clickable (because it isn't).
 
 	game.svgObjects.push(player.placeHolder);
 }
