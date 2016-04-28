@@ -140,9 +140,13 @@ function RemoveCapturePoint(map, checkpoint){
  */
 function SelectCheckpoint(checkpoint)
 {
+	
+	//alert("Here");
 	checkpoint.clickCircle.attr({ id: 'P' + checkpoint.index.toString()});
 	checkpoint.clickCircle.attr({ fill: 'magenta', opacity: 0.65 });
 	checkpoint.selected = true;
+	//SetCheckpointMouseover(checkpoint);
+	//SetCheckpointMouseout(checkpoint);
 }
 
 /* Deselects the given checkpoint
@@ -207,6 +211,7 @@ function SetCheckpointMouseover(checkpoint)
 											var type = id.slice(0, 1);
 											var index = parseInt(id.slice(1));
 											if (type == 'N' || type == 'R' || type == 'H')
+											//if (checkpoint.selected)
 											{
 												checkpoint.clickCircle.attr({fill: 'black', opacity: 0.4});
 											} 
@@ -216,7 +221,6 @@ function SetCheckpointMouseover(checkpoint)
 /* Sets the on mouseout function for the given checkpoint 
  * Parameter types: (Checkpoint)
  */
-			checkpoint.clickCircle.attr('opacity', 0);
 function SetCheckpointMouseout(checkpoint)
 {
 	checkpoint.clickCircle.mouseout(function()
@@ -225,7 +229,9 @@ function SetCheckpointMouseout(checkpoint)
 											var type = id.slice(0, 1);
 											var index = parseInt(id.slice(1));
 											if (type == 'N' || type == 'R' || type == 'H')
+											//if (checkpoint.selected)
 											{
+												checkpoint.clickCircle.attr({fill: 'white', opacity: 0.4});
 											} 
 										});
 }
