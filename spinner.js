@@ -14,18 +14,20 @@ function CreateSpinner()
 	var image = theGuy.image('Resources/theGuy.png', GetPanelHeight() * 0.8, GetPanelHeight() * 0.8);
 	image.cx(GetMiddleWidth() * 0.47);
 	image.cy(GetPanelHeight() * 0.46);
-	image.style({cursor: 'default'});
+	image.style({cursor: 'default'});			// Task #6134:  Cursor should not indicate the image is clickable (because it isn't).
 	game.svgObjects.push(image);
 
 	spinnerBoard = game.spinner.image('Resources/spinner.png', GetPanelHeight() * spinnerBoardWidthScale, 
 					GetPanelHeight() * spinnerBoardHeightScale);
 	FixSpinnerBoardPosition();
+	spinnerBoard.style({cursor: 'default'});	// Task #6148:  Cursor should not indicate the image is clickable (because it isn't).
 	game.svgObjects.push(spinnerBoard);
 
 
 	pin = game.spinner.image('Resources/pin.png', GetPanelHeight() * pinWidthScale, GetPanelHeight() * pinHeightScale);
 	pin.cx(pin.cx() + GetPanelHeight() * pinCXDeviation);
 	pin.cy(pin.cy() + GetPanelHeight() * pinCYDeviation);
+	pin.style({cursor: 'default'});				// Task #6148:  Cursor should not indicate the image is clickable (because it isn't).b
 	game.svgObjects.push(pin);
 	var pinCenter = GetPinCenter();
 
